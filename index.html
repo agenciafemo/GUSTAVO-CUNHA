@@ -296,7 +296,15 @@
     }
     .differential-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+    .differential-card:nth-child(odd):hover {
+      box-shadow: 0 12px 24px rgba(232, 245, 242, 0.6);
+    }
+    .differential-card:nth-child(even):hover {
+      box-shadow: 0 12px 24px rgba(61, 140, 126, 0.4);
+    }
+    .differential-card-teal-custom:hover {
+      box-shadow: 0 12px 24px rgba(89, 145, 146, 0.4);
     }
     .differential-card-icon {
       width: 48px;
