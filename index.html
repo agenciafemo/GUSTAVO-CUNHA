@@ -1232,7 +1232,7 @@
       content: '';
       position: absolute;
       top: 260px;
-      width: 700px;
+      width: 450px;
       height: 60%;
       z-index: 2;
       pointer-events: none;
@@ -2778,8 +2778,10 @@
       const nextBtn = document.querySelector('.carousel-next');
       const cardWidth = 240 + 24; // 264px (largura do card + gap)
       const totalCards = 10; // Total de cards (5 originais + 5 duplicados)
+      const pauseDuration = 15000; // 15 segundos em ms
 
       let currentPosition = 0;
+      let autoScrollTimeout = null;
 
       const updateButtons = () => {
         // Disable botão anterior se está no início
@@ -2801,6 +2803,14 @@
         grid.style.transform = `translateX(-${currentPosition}px)`;
 
         updateButtons();
+
+        // Pausar carrossel por 15 segundos ao clicar
+        if (autoScrollTimeout) clearTimeout(autoScrollTimeout);
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        autoScrollTimeout = setTimeout(() => {
+          updateButtons();
+        }, pauseDuration);
       };
 
       prevBtn.addEventListener('click', () => scroll(-1));
