@@ -2753,7 +2753,7 @@
   </script>
 
   <script>
-    /* Carrossel infinito com reposicionamento DOM */
+    /* Carrossel infinito — autoplay + pausa ao clicar nas setas */
     (() => {
       const grid    = document.querySelector('.procedures-grid');
       const prevBtn = document.querySelector('.carousel-prev');
@@ -2761,14 +2761,19 @@
       if (!grid || !prevBtn || !nextBtn) return;
 
       // ─── Configuração ────────────────────────────────────────
-      const CARD_W    = 264;
-      const GAP       = 24;
-      const STEP      = CARD_W + GAP;
-      const DURATION  = 500;
+      const CARD_W        = 264;   // largura do card em px
+      const GAP           = 24;    // gap do CSS em px
+      const STEP          = CARD_W + GAP;
+      const DURATION      = 500;   // ms da animação de slide
+      const AUTOPLAY_MS   = 3000;  // intervalo do autoplay em ms
+      const PAUSE_MS      = 15000; // pausa após clicar nas setas em ms
 
-      let offset    = 0;
-      let animating = false;
+      let offset      = 0;
+      let animating   = false;
+      let autoplayId  = null; // id do setInterval do autoplay
+      let resumeId    = null; // id do setTimeout de retomada
 
+      // ─── Helpers de transform ────────────────────────────────
       const setInstant = () => {
         grid.style.transition = 'none';
         grid.style.transform  = `translateX(${offset}px)`;
@@ -2779,11 +2784,10 @@
         grid.style.transform  = `translateX(${offset}px)`;
       };
 
+      // ─── Lógica de movimento ─────────────────────────────────
       const next = () => {
         if (animating) return;
         animating = true;
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
 
         offset -= STEP;
         setAnimated();
@@ -2792,37 +2796,56 @@
           grid.appendChild(grid.firstElementChild);
           offset += STEP;
           setInstant();
-
           animating = false;
-          prevBtn.disabled = false;
-          nextBtn.disabled = false;
         }, DURATION);
       };
 
       const prev = () => {
         if (animating) return;
         animating = true;
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
 
         grid.prepend(grid.lastElementChild);
         offset -= STEP;
         setInstant();
-
-        grid.getBoundingClientRect();
+        grid.getBoundingClientRect(); // força reflow
 
         offset += STEP;
         setAnimated();
 
-        setTimeout(() => {
-          animating = false;
-          prevBtn.disabled = false;
-          nextBtn.disabled = false;
-        }, DURATION);
+        setTimeout(() => { animating = false; }, DURATION);
       };
 
-      nextBtn.addEventListener('click', next);
-      prevBtn.addEventListener('click', prev);
+      // ─── Autoplay ────────────────────────────────────────────
+      const startAutoplay = () => {
+        if (autoplayId) return; // já está rodando
+        autoplayId = setInterval(next, AUTOPLAY_MS);
+      };
+
+      const stopAutoplay = () => {
+        clearInterval(autoplayId);
+        autoplayId = null;
+      };
+
+      // ─── Pausa temporária ao clicar nas setas ────────────────
+      const pauseThenResume = () => {
+        stopAutoplay();
+        clearTimeout(resumeId); // cancela retomada anterior se houver
+        resumeId = setTimeout(startAutoplay, PAUSE_MS);
+      };
+
+      // ─── Eventos dos botões ──────────────────────────────────
+      nextBtn.addEventListener('click', () => {
+        next();
+        pauseThenResume();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        prev();
+        pauseThenResume();
+      });
+
+      // ─── Inicia ──────────────────────────────────────────────
+      startAutoplay();
     })();
   </script>
 
