@@ -251,6 +251,51 @@
     /* =========================================================
        SEÇÃO ATENDIMENTO INFANTIL
        ========================================================= */
+    /* =========================================================
+       SEÇÃO DIFERENCIAIS
+       ========================================================= */
+    .differentials {
+      padding: 80px 0;
+      background: linear-gradient(180deg, rgba(89, 145, 146, 0.12) 0%, rgba(196, 168, 130, 0.08) 100%);
+      border-bottom: 1px solid rgba(89, 145, 146, 0.15);
+    }
+    .differentials-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .differentials-head h2 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      color: var(--dark);
+    }
+    .differentials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .differential-card {
+      background: var(--white);
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .differential-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .differential-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    .differential-card p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin: 0;
+    }
     .pediatric {
       padding: 40px 0 !important;
       margin-top: 180px;
@@ -1843,7 +1888,7 @@
               Cirurgião Bucomaxilofacial &middot; Florianópolis
             </div>
             <h1 id="hero-title">Cirurgia bucomaxilofacial<br>com <span class="rotating-word"></span> e naturalidade</h1>
-            <p class="lead">Do diagnóstico à recuperação, você conta com um<br>acompanhamento próximo em cada etapa. Unimos um<br>planejamento minucioso a um ambiente acolhedor<br>para que todo o processo seja leve, claro e seguro.</p>
+            <p class="lead">Do diagnóstico à recuperação. Você conta com um<br>acompanhamento próximo em todas as etapas.<br>Unimos um planejamento minucioso a um ambiente acolhedor<br>para que todo o processo seja leve, claro e seguro.</p>
             <div class="hero-actions">
               <a href="https://api.whatsapp.com/send?phone=5548984057850&text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Agendar consulta com o Dr. Gustavo pelo WhatsApp">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.274-.101-.473-.15-.671.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.655-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.525.146-.18.196-.3.296-.495.1-.21.049-.375-.025-.525-.075-.15-.671-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.21 2.095 3.18 5.077 4.47.709.301 1.265.48 1.694.615.714.225 1.365.195 1.874.12.574-.09 1.765-.72 2.016-1.425.251-.69.251-1.29.176-1.41-.075-.135-.274-.21-.571-.36zM12.06 21.328h-.006c-1.572 0-3.111-.42-4.458-1.215l-.318-.195-3.327.873.888-3.243-.21-.33a9.297 9.297 0 01-1.425-4.905c0-5.145 4.194-9.33 9.345-9.33 2.49 0 4.83.975 6.591 2.73 1.758 1.77 2.73 4.11 2.73 6.615 0 5.145-4.185 9.33-9.33 9.33zM12.06 1.121C6.046 1.121 1.155 6.012 1.155 12.026c0 1.92.502 3.795 1.455 5.445L1 23l5.655-1.485c1.59.87 3.39 1.32 5.25 1.32h.006c6.012 0 10.905-4.89 10.905-10.905 0-2.91-1.134-5.655-3.192-7.71C17.568 2.253 14.823 1.121 12.06 1.121z"/></svg>
@@ -1866,7 +1911,7 @@
       <div class="container">
         <div class="procedures-head">
           <div class="eyebrow">Procedimentos</div>
-          <h2 id="procedures-title">Cirurgia da face com<br>precisão e naturalidade</h2>
+          <h2 id="procedures-title">Cirurgia da face com<br>acolhimento e naturalidade</h2>
         </div>
 
         <div class="procedures-grid">
@@ -2033,7 +2078,7 @@
               <div class="credential">
                 <div class="big-number" style="font-size: 32px; line-height: 1;">✓</div>
                 <h4>Especialização dedicada</h4>
-                <p>Experiência concentrada em cirurgia bucomaxilofacial. Mais segurança e critério em cada decisão.</p>
+                <p>Experiência concentrada em cirurgia bucomaxilofacial. São base nas cirurgias.</p>
               </div>
               <div class="credential">
               <div style="height: 100px; margin-top: -12px; margin-bottom: 0px; display: flex; align-items: center; justify-content: center;">
@@ -2078,6 +2123,50 @@
     </section>
 
     <!-- ============================================================
+         SEÇÃO DIFERENCIAIS
+         ============================================================ -->
+    <section class="differentials" aria-labelledby="differentials-title">
+      <div class="container">
+        <div class="differentials-head">
+          <div class="eyebrow">Diferenciais</div>
+          <h2 id="differentials-title">Sua segurança e<br>conforto em primeiro lugar</h2>
+        </div>
+
+        <div class="differentials-grid">
+          <div class="differential-card">
+            <h3>Estrutura Completa</h3>
+            <p>Consultório totalmente equipado com tecnologia de ponta para procedimentos seguros e eficientes.</p>
+          </div>
+
+          <div class="differential-card">
+            <h3>Conforto Pré e Pós</h3>
+            <p>Clínica ambientada para garantir seu bem-estar antes, durante e depois do procedimento.</p>
+          </div>
+
+          <div class="differential-card">
+            <h3>Sorvete Pós-Operatório</h3>
+            <p>Alívio natural do desconforto e recuperação mais confortável após a cirurgia.</p>
+          </div>
+
+          <div class="differential-card">
+            <h3>Cadeira de Massagem</h3>
+            <p>Equipamento para relaxamento e conforto durante sua permanência no consultório.</p>
+          </div>
+
+          <div class="differential-card">
+            <h3>Laser Terapia Pós-Op</h3>
+            <p>Laser de baixa potência para acelerar a recuperação e reduzir desconforto naturalmente.</p>
+          </div>
+
+          <div class="differential-card">
+            <h3>Casos Complexos</h3>
+            <p>Especialista em sisos complexos, complicações e procedimentos junto a estruturas delicadas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
          SEÇÃO ATENDIMENTO INFANTIL
          ============================================================ -->
     <section id="infantil" class="pediatric" aria-labelledby="pediatric-title">
@@ -2113,7 +2202,7 @@
             <h2 id="pediatric-title">Cirurgias bucais para<br>crianças e adolescentes</h2>
 
             <p class="pediatric-description">
-              Crianças podem ter medo e ansiedade. Por isso, aqui o atendimento é especial: ambiente acolhedor, técnica delicada e explicações simples. O Dr. Gustavo realiza extrações de dentes, frenotomia lingual, atendimento de traumas e ensino de higiene bucal. Cada procedimento é feito no ritmo da criança, para que ela se sinta segura e confiante com nossa equipe.
+              Crianças podem ter medo e ansiedade. Por isso, o atendimento é especial: ambiente acolhedor, técnica delicada e explicações simples. O Dr. Gustavo realiza extrações de dentes, frenotomia lingual, atendimento de traumas. Cada procedimento é feito no ritmo da criança, para que ela se sinta segura e confiante com nossa equipe.
             </p>
 
             <!-- SEÇÃO INFERIOR - 4 CARDS SEM DESCRIÇÃO -->
@@ -2182,8 +2271,8 @@
         <div class="location-grid">
           <div class="location-text">
             <div class="eyebrow">Onde atendemos</div>
-            <h2 id="location-title">Consultório no centro de Florianópolis</h2>
-            <p>O atendimento acontece em ambiente privativo no centro de Florianópolis, planejado para conforto e discrição. Procedimentos cirúrgicos são conduzidos em ambiente cirúrgico seguro e acolhedor, com equipe multidisciplinar preparada.</p>
+            <h2 id="location-title">Atendimento no centro de Florianópolis</h2>
+            <p>O atendimento acontece em uma clínica no centro de Florianópolis, planejado para conforto e discrição. Procedimentos cirúrgicos são conduzidos em ambiente cirúrgico seguro e acolhedor, com equipe multidisciplinar preparada.</p>
 
             <div class="location-info">
               <strong>Clínica CIAC &middot; Dr. Gustavo Soares Cunha</strong>
@@ -2355,7 +2444,7 @@
             </button>
             <div class="faq-a">
               <div class="faq-a-inner">
-                A tranquilidade do paciente é prioridade. Começamos com explicação clara sobre cada etapa, sem jargão técnico. Antes da cirurgia, ofereço sedação leve (você relaxa e fica consciente) ou sedação moderada (muitos pacientes dormem praticamente). Não há dor, apenas sensações. A maioria dos pacientes relata que é muito menos assustador do que esperavam.
+                A tranquilidade do paciente é prioridade. Começamos com explicação clara sobre cada etapa. Antes da cirurgia, ofereço sedação leve (você relaxa e fica consciente) ou sedação moderada (muitos pacientes dormem). Não há dor, apenas sensações. A maioria dos pacientes relata que é menos assustador do que esperavam.
               </div>
             </div>
           </div>
@@ -2394,25 +2483,12 @@
             </button>
             <div class="faq-a">
               <div class="faq-a-inner">
-                Eu mesmo. Você não muda de mão em nenhum momentoquem diagnosticou, operou, acompanha a recuperação. Consultórios sérios fazem isso. Significa que tenho contexto completo do seu caso e você não precisa repetir histórias ou lidar com interpretações diferentes.
+                Você não muda de mão em nenhum momento quem diagnosticou, operou, acompanha a recuperação. Significa que temos contexto completo do seu caso e você não precisa repetir histórias ou lidar com interpretações diferentes.
               </div>
             </div>
           </div>
 
-          <!-- FAQ 11 -->
-          <div class="faq-item">
-            <button class="faq-q" aria-expanded="false">
-              <span>Como é estar na sala de cirurgia? O que sinto?</span>
-              <span class="icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Você recebe anestesia local com sedação leverelaxado, mas consciente o suficiente para comunicar desconforto (raramente necessário). Não há dor, apenas sensações de movimento e sons. Muitos pacientes dormem praticamente. Você acorda quando está tudo pronto e bem.
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ 12 -->
+          <!-- FAQ 11 (renumerado de FAQ 12) -->
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               <span>E se algo não sair como planejado? Como vocês lidam?</span>
@@ -2420,7 +2496,7 @@
             </button>
             <div class="faq-a">
               <div class="faq-a-inner">
-                Procedimentos sempre têm protocolos de contingência. O planejamento detalhado e análise radiológica reduzem imprevistos significativamente. Se algo ocorre, o paciente está em ambiente cirúrgico seguro e acolhedor com equipe multidisciplinar preparada. Segurança em cada etapa é a prioridade.
+                Procedimentos sempre têm protocolos de contingência. O planejamento detalhado e análise radiológica reduzem imprevistos significativamente. Se algo ocorre, o paciente está em ambiente cirúrgico seguro e acolhedor com equipe multidisciplinar preparada. Segurança é a prioridade.
               </div>
             </div>
           </div>
