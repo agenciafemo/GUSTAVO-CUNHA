@@ -2753,42 +2753,76 @@
   </script>
 
   <script>
-    /* Controles do carrossel de procedimentos */
+    /* Carrossel infinito com reposicionamento DOM */
     (() => {
-      const grid = document.querySelector('.procedures-grid');
+      const grid    = document.querySelector('.procedures-grid');
       const prevBtn = document.querySelector('.carousel-prev');
       const nextBtn = document.querySelector('.carousel-next');
-
       if (!grid || !prevBtn || !nextBtn) return;
 
-      let position = 0;
-      const cardWidth = 264;
-      const maxPosition = 5 * cardWidth;
+      // ─── Configuração ────────────────────────────────────────
+      const CARD_W    = 264;
+      const GAP       = 24;
+      const STEP      = CARD_W + GAP;
+      const DURATION  = 500;
 
-      const updateGrid = () => {
-        grid.style.transform = `translateX(-${position}px)`;
-        grid.style.transition = 'transform 0.6s ease-out';
+      let offset    = 0;
+      let animating = false;
+
+      const setInstant = () => {
+        grid.style.transition = 'none';
+        grid.style.transform  = `translateX(${offset}px)`;
       };
 
-      const moveCarousel = (direction) => {
-        position += cardWidth * direction;
-
-        if (position < 0) position = 0;
-        if (position > maxPosition) position = maxPosition;
-
-        updateGrid();
-
-        if (position >= maxPosition) {
-          setTimeout(() => {
-            grid.style.transition = 'none';
-            position = 0;
-            updateGrid();
-          }, 600);
-        }
+      const setAnimated = () => {
+        grid.style.transition = `transform ${DURATION}ms cubic-bezier(0.4,0,0.2,1)`;
+        grid.style.transform  = `translateX(${offset}px)`;
       };
 
-      prevBtn.addEventListener('click', () => moveCarousel(-1));
-      nextBtn.addEventListener('click', () => moveCarousel(1));
+      const next = () => {
+        if (animating) return;
+        animating = true;
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+
+        offset -= STEP;
+        setAnimated();
+
+        setTimeout(() => {
+          grid.appendChild(grid.firstElementChild);
+          offset += STEP;
+          setInstant();
+
+          animating = false;
+          prevBtn.disabled = false;
+          nextBtn.disabled = false;
+        }, DURATION);
+      };
+
+      const prev = () => {
+        if (animating) return;
+        animating = true;
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+
+        grid.prepend(grid.lastElementChild);
+        offset -= STEP;
+        setInstant();
+
+        grid.getBoundingClientRect();
+
+        offset += STEP;
+        setAnimated();
+
+        setTimeout(() => {
+          animating = false;
+          prevBtn.disabled = false;
+          nextBtn.disabled = false;
+        }, DURATION);
+      };
+
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
     })();
   </script>
 
