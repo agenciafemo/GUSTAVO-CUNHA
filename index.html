@@ -2749,10 +2749,8 @@
       const cardWidth = 240 + 24; // 264px (largura do card + gap)
       const totalCards = 10; // Total de cards (5 originais + 5 duplicados)
       const originalCards = 5; // Número de cards originais
-      const pauseDuration = 15000; // 15 segundos em ms
 
       let currentPosition = 0;
-      let autoScrollTimeout = null;
       let isResetting = false;
 
       const resetCarousel = () => {
@@ -2785,15 +2783,6 @@
             resetCarousel();
           }, 500); // Após a animação terminar
         }
-
-        // Pausar carrossel por 15 segundos ao clicar
-        if (autoScrollTimeout) clearTimeout(autoScrollTimeout);
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        autoScrollTimeout = setTimeout(() => {
-          prevBtn.disabled = false;
-          nextBtn.disabled = false;
-        }, pauseDuration);
       };
 
       prevBtn.addEventListener('click', () => scroll(1));
