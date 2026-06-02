@@ -2697,36 +2697,6 @@
     })();
   </script>
 
-  <script>
-    /* Carrossel infinito - loop com reset imperceptível */
-    (() => {
-      const grid = document.querySelector('.procedures-grid');
-      const cardWidth = 240 + 24; // 264px (largura + gap)
-      const totalDistance = cardWidth * 5; // Distância dos 5 cards originais (1320px)
-
-      let position = 0;
-
-      const tick = () => {
-        position += cardWidth;
-
-        // Movimento suave
-        grid.style.transition = 'transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        grid.style.transform = `translateX(-${position}px)`;
-
-        // Após animação terminar, se chegou ao final, reseta imperceptivelmente
-        setTimeout(() => {
-          if (position >= totalDistance) {
-            grid.style.transition = 'none';
-            position = 0;
-            grid.style.transform = 'translateX(0)';
-          }
-        }, 1200);
-      };
-
-      // Intervalo sincronizado com duração da transição
-      setInterval(tick, 4000);
-    })();
-  </script>
 
   <script>
     /* Efeito typewriter com palavra rotativa */
