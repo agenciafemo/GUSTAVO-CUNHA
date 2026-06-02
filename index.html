@@ -2746,47 +2746,31 @@
       const grid = document.querySelector('.procedures-grid');
       const prevBtn = document.querySelector('.carousel-prev');
       const nextBtn = document.querySelector('.carousel-next');
-      const cardWidth = 240 + 24; // 264px (largura do card + gap)
-      const totalCards = 10; // Total de cards (5 originais + 5 duplicados)
-      const originalCards = 5; // Número de cards originais
 
-      let currentPosition = 0;
-      let isResetting = false;
+      const cardWidth = 264; // 240px card + 24px gap
+      const originalCards = 5;
+      const resetPoint = originalCards * cardWidth; // 1320px
 
-      const resetCarousel = () => {
-        isResetting = true;
-        grid.style.transition = 'none';
-        currentPosition = 0;
-        grid.style.transform = `translateX(0px)`;
-        // Força o reflow para aplicar a mudança imediata
-        void grid.offsetHeight;
-        // Reativa transição após reset
-        setTimeout(() => {
-          grid.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          isResetting = false;
-        }, 50);
-      };
+      let position = 0;
 
-      const scroll = (direction) => {
-        if (isResetting) return;
-
-        const newPosition = currentPosition + (cardWidth * direction);
-        currentPosition = newPosition;
+      const moveCarousel = (direction) => {
+        position += cardWidth * direction;
 
         grid.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        grid.style.transform = `translateX(-${currentPosition}px)`;
+        grid.style.transform = `translateX(-${position}px)`;
 
-        // Se chegou ao ponto de duplicação, reseta
-        const resetPoint = originalCards * cardWidth;
-        if (currentPosition >= resetPoint) {
+        // Reset imperceptível quando chega no ponto de duplicação
+        if (position >= resetPoint) {
           setTimeout(() => {
-            resetCarousel();
-          }, 500); // Após a animação terminar
+            grid.style.transition = 'none';
+            position = 0;
+            grid.style.transform = `translateX(0px)`;
+          }, 500);
         }
       };
 
-      prevBtn.addEventListener('click', () => scroll(1));
-      nextBtn.addEventListener('click', () => scroll(-1));
+      prevBtn?.addEventListener('click', () => moveCarousel(1));
+      nextBtn?.addEventListener('click', () => moveCarousel(-1));
     })();
   </script>
 
