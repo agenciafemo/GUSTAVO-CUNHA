@@ -1224,9 +1224,13 @@
     }
     .procedures-section {
       position: relative;
-      overflow-y: hidden;
-      overflow-x: auto;
-      scroll-behavior: smooth;
+      overflow: hidden;
+    }
+
+    .carousel-wrapper {
+      width: 100%;
+      overflow: hidden;
+      margin: 0 auto;
     }
 
     .procedures-section::before,
@@ -1919,7 +1923,8 @@
         </div>
       </div>
 
-      <div class="procedures-grid">
+      <div class="carousel-wrapper">
+        <div class="procedures-grid">
           <!-- CARD 1: Implantes -->
           <article class="proc-card">
             <div class="proc-icon" aria-hidden="true">
@@ -2021,6 +2026,7 @@
           </article>
 
         </div>
+      </div>
 
       <div class="container">
         <div class="carousel-controls">
@@ -2749,17 +2755,36 @@
   <script>
     /* Controles do carrossel de procedimentos */
     (() => {
-      const section = document.querySelector('.procedures-section');
+      const grid = document.querySelector('.procedures-grid');
       const prevBtn = document.querySelector('.carousel-prev');
       const nextBtn = document.querySelector('.carousel-next');
 
-      if (!section || !prevBtn || !nextBtn) return;
+      if (!grid || !prevBtn || !nextBtn) return;
 
+      let position = 0;
       const cardWidth = 264;
+      const maxPosition = 5 * cardWidth;
+
+      const updateGrid = () => {
+        grid.style.transform = `translateX(-${position}px)`;
+        grid.style.transition = 'transform 0.6s ease-out';
+      };
 
       const moveCarousel = (direction) => {
-        const scrollAmount = cardWidth * direction;
-        section.scrollLeft += scrollAmount;
+        position += cardWidth * direction;
+
+        if (position < 0) position = 0;
+        if (position > maxPosition) position = maxPosition;
+
+        updateGrid();
+
+        if (position >= maxPosition) {
+          setTimeout(() => {
+            grid.style.transition = 'none';
+            position = 0;
+            updateGrid();
+          }, 600);
+        }
       };
 
       prevBtn.addEventListener('click', () => moveCarousel(1));
