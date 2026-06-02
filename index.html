@@ -1224,7 +1224,9 @@
     }
     .procedures-section {
       position: relative;
-      overflow: hidden;
+      overflow-y: hidden;
+      overflow-x: auto;
+      scroll-behavior: smooth;
     }
 
     .procedures-section::before,
@@ -2747,48 +2749,24 @@
   <script>
     /* Controles do carrossel de procedimentos */
     (() => {
-      const grid = document.querySelector('.procedures-grid');
+      const section = document.querySelector('.procedures-section');
       const prevBtn = document.querySelector('.carousel-prev');
       const nextBtn = document.querySelector('.carousel-next');
 
-      console.log('Carrossel - Grid encontrado:', !!grid);
-      console.log('Carrossel - PrevBtn encontrado:', !!prevBtn);
-      console.log('Carrossel - NextBtn encontrado:', !!nextBtn);
-
-      if (!grid || !prevBtn || !nextBtn) {
-        console.error('Carrossel: Elementos não encontrados!');
-        return;
-      }
+      if (!section || !prevBtn || !nextBtn) return;
 
       const cardWidth = 264;
-      let position = 0;
 
       const moveCarousel = (direction) => {
-        position += cardWidth * direction;
-        console.log('Movendo para:', position);
-        grid.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        grid.style.transform = `translate3d(-${position}px, 0, 0)`;
-
-        // Reset quando chega ao final
-        if (position >= 5 * cardWidth) {
-          setTimeout(() => {
-            grid.style.transition = 'none';
-            position = 0;
-            grid.style.transform = `translate3d(0, 0, 0)`;
-          }, 800);
-        }
+        const scrollAmount = cardWidth * direction;
+        section.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
       };
 
-      prevBtn.addEventListener('click', () => {
-        console.log('Clicou prev');
-        moveCarousel(1);
-      });
-      nextBtn.addEventListener('click', () => {
-        console.log('Clicou next');
-        moveCarousel(-1);
-      });
-
-      console.log('Carrossel inicializado');
+      prevBtn.addEventListener('click', () => moveCarousel(1));
+      nextBtn.addEventListener('click', () => moveCarousel(-1));
     })();
   </script>
 
