@@ -1253,6 +1253,7 @@
       gap: 24px;
       padding: 12px 0;
       position: relative;
+      width: fit-content;
     }
     @media (min-width: 768px) {
       .procedures-grid { gap: 20px; }
@@ -2747,15 +2748,7 @@
       const prevBtn = document.querySelector('.carousel-prev');
       const nextBtn = document.querySelector('.carousel-next');
 
-      console.log('=== Carrossel Debug ===');
-      console.log('Grid:', grid);
-      console.log('PrevBtn:', prevBtn);
-      console.log('NextBtn:', nextBtn);
-
-      if (!grid || !prevBtn || !nextBtn) {
-        console.error('Elementos não encontrados!');
-        return;
-      }
+      if (!grid || !prevBtn || !nextBtn) return;
 
       const cardWidth = 264; // 240px card + 24px gap
       const originalCards = 5;
@@ -2764,16 +2757,12 @@
       let position = 0;
 
       const moveCarousel = (direction) => {
-        console.log('moveCarousel chamada com direction:', direction);
         position += cardWidth * direction;
-        console.log('Nova posição:', position);
-
         grid.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         grid.style.transform = `translateX(-${position}px)`;
 
         // Reset imperceptível quando chega no ponto de duplicação
         if (position >= resetPoint) {
-          console.log('Reset acionado');
           setTimeout(() => {
             grid.style.transition = 'none';
             position = 0;
@@ -2782,16 +2771,8 @@
         }
       };
 
-      prevBtn.addEventListener('click', () => {
-        console.log('PrevBtn clicado');
-        moveCarousel(1);
-      });
-      nextBtn.addEventListener('click', () => {
-        console.log('NextBtn clicado');
-        moveCarousel(-1);
-      });
-
-      console.log('Carrossel inicializado com sucesso');
+      prevBtn.addEventListener('click', () => moveCarousel(1));
+      nextBtn.addEventListener('click', () => moveCarousel(-1));
     })();
   </script>
 
