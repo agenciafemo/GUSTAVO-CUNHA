@@ -2778,43 +2778,56 @@
       const nextBtn = document.querySelector('.carousel-next');
       const cardWidth = 240 + 24; // 264px (largura do card + gap)
       const totalCards = 10; // Total de cards (5 originais + 5 duplicados)
+      const originalCards = 5; // Número de cards originais
       const pauseDuration = 15000; // 15 segundos em ms
 
       let currentPosition = 0;
       let autoScrollTimeout = null;
+      let isResetting = false;
 
-      const updateButtons = () => {
-        // Disable botão anterior se está no início
-        prevBtn.disabled = currentPosition === 0;
-        // Disable botão próximo se chegou ao final
-        nextBtn.disabled = currentPosition >= (totalCards - 4) * cardWidth;
+      const resetCarousel = () => {
+        isResetting = true;
+        grid.style.transition = 'none';
+        currentPosition = 0;
+        grid.style.transform = `translateX(0px)`;
+        // Força o reflow para aplicar a mudança imediata
+        void grid.offsetHeight;
+        // Reativa transição após reset
+        setTimeout(() => {
+          grid.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          isResetting = false;
+        }, 50);
       };
 
       const scroll = (direction) => {
+        if (isResetting) return;
+
         const newPosition = currentPosition + (cardWidth * direction);
-
-        // Validar limites
-        if (newPosition < 0 || newPosition > (totalCards - 4) * cardWidth) {
-          return;
-        }
-
         currentPosition = newPosition;
+
         grid.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         grid.style.transform = `translateX(-${currentPosition}px)`;
+
+        // Se chegou ao ponto de duplicação, reseta
+        const resetPoint = originalCards * cardWidth;
+        if (currentPosition >= resetPoint) {
+          setTimeout(() => {
+            resetCarousel();
+          }, 500); // Após a animação terminar
+        }
 
         // Pausar carrossel por 15 segundos ao clicar
         if (autoScrollTimeout) clearTimeout(autoScrollTimeout);
         prevBtn.disabled = true;
         nextBtn.disabled = true;
         autoScrollTimeout = setTimeout(() => {
-          updateButtons(); // Após 15s, verifica se realmente deve desabilitar (se chegou no final/início)
+          prevBtn.disabled = false;
+          nextBtn.disabled = false;
         }, pauseDuration);
       };
 
       prevBtn.addEventListener('click', () => scroll(1));
       nextBtn.addEventListener('click', () => scroll(-1));
-
-      updateButtons();
     })();
   </script>
 
