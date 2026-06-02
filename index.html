@@ -2759,10 +2759,7 @@
 
       const moveCarousel = (direction) => {
         const scrollAmount = cardWidth * direction;
-        section.scrollBy({
-          left: scrollAmount,
-          behavior: 'smooth'
-        });
+        section.scrollLeft += scrollAmount;
       };
 
       prevBtn.addEventListener('click', () => moveCarousel(1));
