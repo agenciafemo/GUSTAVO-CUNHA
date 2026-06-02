@@ -1252,8 +1252,9 @@
       display: flex;
       gap: 24px;
       padding: 12px 0;
-      position: relative;
       width: fit-content;
+      flex-wrap: nowrap;
+      will-change: transform;
     }
     @media (min-width: 768px) {
       .procedures-grid { gap: 20px; }
@@ -2764,17 +2765,17 @@
 
       const moveCarousel = (direction) => {
         position += cardWidth * direction;
-        console.log('Movendo para:', -position);
-        grid.style.transition = 'transform 0.5s ease-out';
-        grid.style.transform = `translateX(-${position}px)`;
+        console.log('Movendo para:', position);
+        grid.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        grid.style.transform = `translate3d(-${position}px, 0, 0)`;
 
         // Reset quando chega ao final
         if (position >= 5 * cardWidth) {
           setTimeout(() => {
             grid.style.transition = 'none';
             position = 0;
-            grid.style.transform = `translateX(0)`;
-          }, 500);
+            grid.style.transform = `translate3d(0, 0, 0)`;
+          }, 800);
         }
       };
 
