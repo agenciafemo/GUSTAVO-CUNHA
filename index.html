@@ -2802,14 +2802,12 @@
         grid.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         grid.style.transform = `translateX(-${currentPosition}px)`;
 
-        updateButtons();
-
         // Pausar carrossel por 15 segundos ao clicar
         if (autoScrollTimeout) clearTimeout(autoScrollTimeout);
         prevBtn.disabled = true;
         nextBtn.disabled = true;
         autoScrollTimeout = setTimeout(() => {
-          updateButtons();
+          updateButtons(); // Após 15s, verifica se realmente deve desabilitar (se chegou no final/início)
         }, pauseDuration);
       };
 
