@@ -13,6 +13,7 @@
   <meta property="og:type" content="website" />
 
   <title>Dr. Gustavo Cunha | Cirurgião Bucomaxilofacial - Florianópolis</title>
+  <link rel="icon" type="image/png" href="/GFAVICON.png" />
 
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,7 +55,18 @@
       --gutter:     24px;
     }
 
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
@@ -64,7 +76,12 @@
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     img { max-width: 100%; height: auto; display: block; }
@@ -83,6 +100,13 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 var(--gutter);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+        max-width: 100%;
+      }
     }
 
     .eyebrow {
@@ -266,9 +290,9 @@
       color: #3D8C7E;
     }
     .differentials-head h2 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      color: #1a1a1a;
-      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--dark);
+      font-weight: 600;
     }
     .differentials-grid {
       display: grid;
@@ -281,17 +305,18 @@
       border: 1px solid rgba(0, 0, 0, 0.06);
       text-align: center;
       transition: transform 0.3s ease;
-      min-height: 250px;
+      min-height: auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 16px;
     }
     .differential-card:nth-child(odd) {
-      background: #ffffff;
-      color: #1a1a1a;
+      background: #599192;
+      color: #ffffff;
     }
     .differential-card:nth-child(even) {
-      background: #3D8C7E;
+      background: #599192;
       color: #ffffff;
     }
     .differential-card:hover {
@@ -316,7 +341,7 @@
       margin: 0 auto 20px;
     }
     .differential-card:nth-child(odd) .differential-card-icon {
-      background: #E8F5F2;
+      background: rgba(255, 255, 255, 0.18);
     }
     .differential-card:nth-child(even) .differential-card-icon {
       background: rgba(255, 255, 255, 0.18);
@@ -325,11 +350,13 @@
       width: 26px;
       height: 26px;
       object-fit: contain;
+      filter: brightness(0) invert(1);
     }
     .differential-card h3 {
       font-size: 15px;
       font-weight: 700;
       margin: 0 0 12px 0;
+      color: #ffffff;
     }
     .differential-card p {
       font-size: 13.5px;
@@ -337,10 +364,10 @@
       margin: 0;
     }
     .differential-card:nth-child(odd) p {
-      color: #666666;
+      color: #ffffff;
     }
     .differential-card:nth-child(even) p {
-      color: rgba(255, 255, 255, 0.78);
+      color: #ffffff;
     }
     .differential-card-teal-custom {
       background: #599192 !important;
@@ -366,6 +393,7 @@
       padding: 40px 0 !important;
       margin-top: 180px;
     }
+
     .pediatric-top-layout {
       display: grid;
       grid-template-columns: 1.5fr 0.5fr;
@@ -373,10 +401,12 @@
       align-items: start;
       margin-bottom: 40px;
     }
+
     .pediatric-image-column {
-      /* Coluna esquerda - imagem */
+      position: relative;
       margin-top: 0px;
     }
+
     .pediatric-image {
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -387,18 +417,85 @@
       margin-top: -40px;
       position: relative;
     }
+
     .pediatric-image::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 40%;
-      background: linear-gradient(to bottom, rgba(248, 246, 242, 0), rgba(248, 246, 242, 1));
+      background: linear-gradient(to bottom, rgba(248,246,242,0), rgba(248,246,242,1));
       pointer-events: none;
     }
-    .pediatric-image-column {
-      position: relative;
+
+    /* ── MOBILE ── */
+    @media (max-width: 767px) {
+      .pediatric {
+        margin-top: 40px !important;
+        overflow: hidden !important;
+      }
+
+      .pediatric-top-layout {
+        display: block !important;
+        padding: 0 20px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+      }
+
+      .pediatric-image-column {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .pediatric-image {
+        margin: 0 !important;
+        max-width: 100% !important;
+        max-height: 280px !important;
+        width: 100% !important;
+      }
+
+      .pediatric-content-column {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        margin-top: 24px !important;
+      }
+
+      .pediatric-content-column h2 {
+        font-size: 1.4rem !important;
+      }
+
+      .pediatric-cards-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        padding: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .pediatric-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .pediatric-cta-btn {
+        max-width: 100% !important;
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 13px 20px !important;
+        box-sizing: border-box !important;
+      }
+
+      .cloud-deco, .bee-deco, .heart-deco, .heart-deco-2,
+      .star-deco, .star-deco-2, .star-deco-3, .star-deco-4,
+      .star-deco-5, .dente-deco, .dente2-deco {
+        display: none !important;
+      }
+
+      .wave-divider {
+        height: 60px !important;
+        margin: 0 !important;
+      }
     }
     .cloud-deco {
       width: 250px;
@@ -514,7 +611,7 @@
       width: 140px;
       height: auto;
       position: absolute;
-      bottom: -240px;
+      bottom: -620px;
       right: 720px;
       opacity: 0.85;
       display: block;
@@ -527,7 +624,7 @@
       width: 140px;
       height: auto;
       position: absolute;
-      bottom: -240px;
+      bottom: -620px;
       left: 780px;
       opacity: 0.85;
       display: block;
@@ -635,6 +732,141 @@
       color: var(--dark);
       margin: 0;
       line-height: 1.4;
+    }
+    .pediatric-review {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 34px 38px;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 34px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ffffff 0%, #f6fbfa 100%);
+      border: 1px solid rgba(89, 145, 146, 0.24);
+      border-left: 5px solid var(--primary);
+      border-radius: 20px;
+      box-shadow: 0 16px 45px rgba(28, 43, 43, 0.1);
+    }
+    .pediatric-review::after {
+      content: '“';
+      position: absolute;
+      top: -42px;
+      right: 24px;
+      color: rgba(89, 145, 146, 0.08);
+      font-family: Georgia, serif;
+      font-size: 190px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .pediatric-review-author {
+      padding-right: 28px;
+      border-right: 1px solid rgba(89, 145, 146, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+    .pediatric-review-person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .pediatric-review-avatar {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dk));
+      font-size: 18px;
+      font-weight: 600;
+      box-shadow: 0 5px 14px rgba(89, 145, 146, 0.3);
+    }
+    .pediatric-review-name {
+      color: var(--dark);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .pediatric-review-meta {
+      margin-top: 3px;
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+    .pediatric-review-stars {
+      color: #f5b301;
+      font-size: 20px;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    .pediatric-review-date {
+      margin-top: 10px;
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+    .pediatric-review-source {
+      width: fit-content;
+      margin-top: 22px;
+      padding: 7px 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--primary-dk);
+      background: rgba(89, 145, 146, 0.09);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .pediatric-review-source span {
+      width: 17px;
+      height: 17px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      background: var(--primary);
+      border-radius: 50%;
+      font-size: 10px;
+    }
+    .pediatric-review-text {
+      position: relative;
+      z-index: 1;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .pediatric-review-text p + p {
+      margin-top: 14px;
+    }
+    .pediatric-review-text p:last-child {
+      color: var(--primary-dk);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .pediatric-review {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 26px 22px;
+        border-left-width: 4px;
+        border-radius: 16px;
+      }
+      .pediatric-review-author {
+        padding: 0 0 20px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(89, 145, 146, 0.2);
+      }
+      .pediatric-review-person {
+        margin-bottom: 16px;
+      }
+      .pediatric-review-source {
+        margin-top: 16px;
+      }
+      .pediatric-review-text {
+        font-size: 13px;
+        line-height: 1.68;
+      }
     }
     .wave-divider {
       width: 100vw;
@@ -780,6 +1012,19 @@
       border-radius: 18px;
       box-shadow: 0 12px 40px rgba(28, 43, 43, 0.10);
       transition: all var(--ease);
+      overflow: visible;
+    }
+
+    @media (max-width: 480px) {
+      .site-header {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        transform: none;
+        width: auto;
+        max-width: none;
+        border-radius: 12px;
+      }
     }
     .site-header .container {
       display: flex;
@@ -789,6 +1034,16 @@
       gap: 16px;
       padding: 0 24px;
       max-width: 100%;
+      width: 100%;
+      overflow: visible;
+    }
+
+    @media (max-width: 480px) {
+      .site-header .container {
+        height: 56px;
+        padding: 0 12px;
+        gap: 8px;
+      }
     }
     .logo {
       font-family: 'Poppins', sans-serif;
@@ -872,27 +1127,58 @@
         gap: 2px;
         z-index: 99;
         box-shadow: var(--shadow-md);
+        max-height: 70vh;
+        overflow-y: auto;
       }
-      .site-nav.open { display: flex; }
+      .site-nav.open {
+        display: flex !important;
+      }
+
       .site-nav a {
         width: 100%;
-        padding: 13px 16px;
-        font-size: 15px;
+        padding: 12px 16px;
+        font-size: 14px;
         border-radius: var(--radius-md);
       }
-      .nav-toggle { display: flex; }
+      .nav-toggle {
+        display: flex;
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .site-nav {
+        top: 68px;
+        max-height: calc(100vh - 68px);
+      }
+
+      .site-nav a {
+        font-size: 13px;
+        padding: 10px 16px;
+      }
+
+      .nav-toggle {
+        width: 30px;
+        height: 30px;
+      }
+
+      .nav-toggle span {
+        width: 18px;
+        height: 2px;
+      }
     }
 
     /* =========================================================
        HERO
        ========================================================= */
     .hero {
-      padding-top: 80px;
+      padding-top: 180px;
       padding-bottom: 340px;
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: url('/IMAGENS/BANNER.jpg') center top/cover no-repeat;
+      background: url('/IMAGENS/BANNER.jpg?v=2') center top/cover no-repeat;
     }
     .hero .container {
       margin: 0 !important;
@@ -1023,55 +1309,306 @@
       50% { transform: translateY(-15px); }
     }
 
-    @media (min-width: 1920px) {
-      .hero-text {
-        margin-left: 290px !important;
-      }
-    }
-    @media (max-width: 1919px) {
-      .hero-text {
-        margin-left: 120px !important;
-      }
-    }
-    @media (max-width: 1400px) {
-      .hero {
-        padding-bottom: 250px;
-      }
-      .hero-text {
-        margin-left: 100px;
-      }
-    }
-    @media (max-width: 1200px) {
-      .hero {
-        padding-bottom: 200px;
-      }
+    @media (min-width: 1400px) {
       .hero-text {
         margin-left: 80px;
         margin-top: 100px;
       }
     }
-    @media (max-width: 1024px) {
-      .hero {
-        padding-bottom: 200px;
-      }
+    @media (min-width: 1920px) {
       .hero-text {
-        margin-left: 80px;
-        margin-top: 30px;
+        margin-left: 290px !important;
       }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
+      section {
+        padding: 70px 0;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
       .hero {
-        padding-bottom: 100px;
+        padding-top: 100px;
+        padding-bottom: 80px;
+        background-position: center top;
       }
+
+      .hero .container {
+        padding: 0 20px;
+      }
+
+      .hero-text {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        width: 100%;
+      }
+
+      .hero-grid {
+        flex-direction: column;
+        gap: 30px;
+      }
+
       .hero h1 {
-        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
       }
+
       .hero p.lead {
         font-size: 1rem;
       }
+
+      .authority-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .authority-photo {
+        aspect-ratio: auto;
+        max-height: 400px;
+      }
+
+      .differentials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .location-media {
+        grid-template-columns: 1fr;
+        min-height: 300px;
+      }
+
+      .procedures-section::before,
+      .procedures-section::after {
+        width: 100px;
+      }
+
+      .proc-card {
+        width: 240px;
+        min-width: 240px;
+      }
+    }
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 0;
+      }
+
+      .hero {
+        padding-top: 90px;
+        padding-bottom: 60px;
+        min-height: auto;
+        background-position: right center;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem !important;
+        line-height: 1.3;
+        margin-bottom: 12px;
+      }
+
+      .hero p.lead {
+        font-size: 0.9rem !important;
+        margin-bottom: 24px;
+      }
+
       .hero-text {
-        margin-left: 0;
-        margin-top: 20px;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        padding: 0 20px;
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        padding: 13px 20px;
+        font-size: 14px;
+        justify-content: center;
+      }
+
+      .hero-credential {
+        font-size: 11px;
+        padding: 8px 14px;
+      }
+
+      .btn {
+        padding: 14px 28px;
+        font-size: 15px;
+        white-space: normal;
+        text-align: center;
+      }
+
+      /* Pediatric */
+      .cloud-deco,
+      .bee-deco,
+      .heart-deco,
+      .heart-deco-2,
+      .star-deco,
+      .star-deco-2,
+      .star-deco-3,
+      .star-deco-4,
+      .star-deco-5,
+      .dente-deco,
+      .dente2-deco {
+        display: none;
+      }
+
+      .pediatric {
+        margin-top: 20px !important;
+        padding: 40px 0 !important;
+        overflow: hidden;
+      }
+
+      .pediatric-top-layout {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        padding: 0 16px;
+      }
+
+      .pediatric-image {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+        max-width: 100% !important;
+        max-height: 320px !important;
+        width: 100%;
+      }
+
+      .pediatric-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .pediatric-content-column {
+        padding: 0;
+      }
+
+      .pediatric-content-column h2 {
+        font-size: 1.5rem;
+      }
+
+      .pediatric-subtitle,
+      .pediatric-description {
+        font-size: 14px;
+      }
+
+      .pediatric-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin-top: 24px !important;
+        padding: 0 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .pediatric-card {
+        padding: 20px 16px !important;
+        width: 100% !important;
+        box-sizing: border-box;
+      }
+
+      /* Procedures */
+      .proc-card {
+        width: 240px !important;
+        min-width: 240px !important;
+        padding: 24px 18px !important;
+        box-sizing: border-box;
+        flex-shrink: 0 !important;
+      }
+
+      .carousel-wrapper {
+        overflow: hidden;
+        width: 100%;
+      }
+
+      /* Corrige o gradiente lateral para funcionar em mobile */
+      .procedures-section::before {
+        width: 24px !important;
+        background: linear-gradient(to right, #F8F6F2 0%, transparent 100%) !important;
+      }
+
+      .procedures-section::after {
+        width: 24px !important;
+        background: linear-gradient(to left, #F8F6F2 0%, transparent 100%) !important;
+      }
+
+      .proc-card p {
+        font-size: 12px;
+        line-height: 1.5;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      .proc-card h3 {
+        font-size: 14px;
+      }
+
+      /* Diferenciais */
+      .differentials {
+        padding: 60px 0;
+      }
+
+      .differentials-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .differential-card {
+        padding: 24px 20px;
+        min-height: auto;
+      }
+
+      /* Authority */
+      .authority {
+        padding-top: 40px;
+      }
+
+      .authority-head {
+        margin-bottom: 36px;
+        padding: 0 16px;
+      }
+
+      .authority-photo-text .name {
+        font-size: 22px;
+      }
+
+      .authority-photo-text .specialty {
+        font-size: 14px;
+      }
+
+      /* Credentials */
+      .credentials {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .credential {
+        padding: 24px 20px;
+      }
+
+      .credential .big-number {
+        font-size: 40px;
+      }
+
+      /* Wave divider */
+      .wave-divider {
+        height: 80px;
+        margin: 0;
       }
     }
 
@@ -1159,11 +1696,333 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 40%;
+      height: 60%;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
       pointer-events: none;
     }
+    .authority-carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+    .authority-carousel {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .authority-carousel .authority-photo {
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .authority-carousel-wrapper .authority-photo-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+    .authority-carousel-prev,
+    .authority-carousel-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .authority-carousel-prev {
+      left: 16px;
+    }
+    .authority-carousel-next {
+      right: 16px;
+    }
     .authority-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(1.3); }
+    .authority-photo img.img-offset { transform: scale(1.3) translateY(40px); }
+
+    @media (max-width: 480px) {
+      .authority-photo img {
+        transform: scale(1);
+      }
+
+      .authority-photo img.img-offset {
+        transform: scale(1) translateY(0);
+      }
+
+      .hero-img-wrap {
+        aspect-ratio: auto;
+        max-height: 300px;
+      }
+
+      /* Procedures Mobile */
+      .proc-card {
+        width: 100% !important;
+        min-width: 100% !important;
+      }
+
+      .procedures-grid {
+        gap: 12px;
+      }
+
+      .carousel-wrapper {
+        margin: 0 -12px;
+      }
+
+      /* Credential Cards */
+      .credential {
+        padding: 20px 16px;
+      }
+
+      /* Buttons Mobile */
+      .btn {
+        padding: 10px 20px;
+        font-size: 12px;
+      }
+
+      /* Section padding REDUZIDO */
+      section {
+        padding: 30px 0 !important;
+      }
+
+      /* Titles REDUZIDOS */
+      h1 {
+        font-size: 1.2rem !important;
+      }
+
+      h2 {
+        font-size: 1.1rem !important;
+        margin-bottom: 24px !important;
+      }
+
+      h3 {
+        font-size: 0.9rem !important;
+      }
+
+      h4 {
+        font-size: 0.85rem !important;
+      }
+
+      p {
+        font-size: 0.8rem !important;
+      }
+
+      .eyebrow {
+        font-size: 9px !important;
+        margin-bottom: 8px !important;
+      }
+
+      /* Credential Cards MENORES */
+      .credential {
+        padding: 14px 12px !important;
+      }
+
+      .credential h4 {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+      }
+
+      .credential p {
+        font-size: 0.7rem;
+        line-height: 1.3;
+      }
+
+      .big-number {
+        font-size: 32px !important;
+        margin-bottom: 8px !important;
+      }
+
+      /* Diferenciais MENORES */
+      .differential-card {
+        padding: 14px 12px !important;
+        min-height: 180px;
+      }
+
+      .differential-card h3 {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+      }
+
+      .differential-card p {
+        font-size: 0.7rem;
+      }
+
+      .differential-card-icon {
+        width: 40px !important;
+        height: 40px !important;
+        margin-bottom: 12px !important;
+      }
+
+      /* Buttons MAIS COMPACTOS */
+      .btn {
+        padding: 8px 16px !important;
+        font-size: 11px !important;
+        gap: 6px;
+      }
+
+      .btn-sm {
+        padding: 6px 12px !important;
+      }
+
+      /* Authority */
+      .authority-grid {
+        gap: 16px;
+      }
+
+      .authority-carousel-wrapper {
+        max-height: 300px;
+      }
+
+      .authority-photo-text .name {
+        font-size: 18px;
+      }
+
+      .authority-photo-text .specialty {
+        font-size: 12px;
+      }
+
+      /* Procedures */
+      .procedures-head {
+        margin-bottom: 30px;
+      }
+
+      .proc-card h3 {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+      }
+
+      .proc-card p {
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+      }
+
+      .proc-card a {
+        font-size: 11px;
+      }
+
+      /* CTA Final */
+      .cta-final h2 {
+        font-size: 1.2rem !important;
+        margin-bottom: 12px;
+      }
+
+      .cta-final p {
+        font-size: 0.8rem;
+        margin-bottom: 16px;
+      }
+
+      .cta-photo {
+        width: 80px !important;
+        height: 80px !important;
+      }
+
+      .cta-inner {
+        gap: 12px;
+      }
+
+      /* FAQ */
+      .faq-q {
+        font-size: 0.9rem;
+        padding: 12px 0;
+      }
+
+      .faq-a-inner {
+        font-size: 0.8rem;
+        padding: 0 0 12px 0;
+      }
+
+      /* Footer */
+      .site-footer {
+        padding: 30px 0 15px;
+      }
+
+      .footer-grid {
+        gap: 20px;
+      }
+
+      .footer-grid h4 {
+        font-size: 10px;
+        margin-bottom: 10px;
+      }
+
+      .footer-grid li {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+      }
+
+      .socials {
+        gap: 8px;
+      }
+
+      .socials a {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      /* Floating button */
+      .wa-float {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 16px;
+      }
+
+      .wa-float svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Carousel buttons */
+      .carousel-btn {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      /* Credentials Counter */
+      .credentials-counter {
+        padding: 40px 24px;
+      }
+
+      .credentials-counter-number {
+        font-size: 32px;
+        margin-bottom: 8px;
+      }
+
+      .credentials-counter-card p {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .carousel-wrapper {
+        overflow: hidden !important;
+        width: 100% !important;
+      }
+
+      .procedures-grid {
+        width: max-content !important;
+        flex-wrap: nowrap !important;
+      }
+
+      .proc-card {
+        width: 240px !important;
+        min-width: 240px !important;
+        max-width: 240px !important;
+        flex-shrink: 0 !important;
+        padding: 24px 18px !important;
+        box-sizing: border-box !important;
+      }
+
+      .procedures-section::before,
+      .procedures-section::after {
+        top: 120px !important;
+        height: 75% !important;
+        width: 20px !important;
+      }
+
+      .procedures-section::before {
+        background: linear-gradient(to right, #F8F6F2 0%, transparent 100%) !important;
+      }
+
+      .procedures-section::after {
+        background: linear-gradient(to left, #F8F6F2 0%, transparent 100%) !important;
+      }
+    }
 
     .authority-photo-text {
       position: absolute;
@@ -1415,15 +2274,13 @@
     .carousel-btn:hover {
       background: var(--primary);
       color: var(--white);
-      transform: scale(1.1);
     }
     .carousel-btn:active {
-      transform: scale(0.95);
+      opacity: 0.85;
     }
     .carousel-btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
-      transform: scale(1);
     }
     .carousel-btn:disabled:hover {
       background: var(--white);
@@ -1545,18 +2402,64 @@
 
     .location-media {
       display: grid;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: 1.8fr 1fr;
       gap: 16px;
-      min-height: 520px;
+      min-height: 700px;
     }
     .location-photo, .location-map {
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-md);
     }
+    .location-photo {
+      position: relative;
+      min-height: 320px;
+    }
     .location-photo img {
       width: 100%; height: 100%; object-fit: cover;
     }
+    .location-photo .loc-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .6s ease;
+    }
+    .location-photo .loc-slide.active { opacity: 1; }
+    .location-photo .loc-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.85);
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: background var(--ease);
+    }
+    .location-photo .loc-btn:hover { background: #fff; }
+    .location-photo .loc-prev { left: 12px; }
+    .location-photo .loc-next { right: 12px; }
+    .location-photo .loc-dots {
+      position: absolute;
+      bottom: 10px; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      z-index: 2;
+    }
+    .location-photo .loc-dots span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      transition: background var(--ease);
+    }
+    .location-photo .loc-dots span.active { background: #fff; }
     .location-map iframe { width: 100%; height: 100%; border: 0; display: block; }
 
     /* =========================================================
@@ -1591,9 +2494,104 @@
       justify-content: center;
     }
 
-    .elfsight-app-da55fafb-9d27-45ef-80da-c3d6585ec85c {
+    .ig-profile {
+      max-width: 1400px;
+      margin: 0 auto 28px;
+      display: none;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .ig-profile.is-visible { display: flex; }
+    .ig-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+      flex-shrink: 0;
+    }
+    .ig-avatar img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--white);
+      display: block;
+    }
+    .ig-identity { min-width: 0; }
+    .ig-identity .ig-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+    .ig-identity .ig-username {
+      color: var(--text-soft);
+      font-size: .95rem;
+    }
+    .ig-stats {
+      display: flex;
+      gap: 28px;
+      margin-left: auto;
+      text-align: center;
+    }
+    .ig-stats strong { display: block; font-size: 1.05rem; }
+    .ig-stats span { color: var(--text-soft); font-size: .85rem; }
+    .ig-follow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0095f6;
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 8px;
+      transition: background var(--ease);
+    }
+    .ig-follow:hover { background: #1877f2; color: #fff; }
+    @media (max-width: 640px) {
+      .ig-profile { justify-content: center; text-align: center; }
+      .ig-stats { margin-left: 0; width: 100%; justify-content: center; }
+    }
+
+    .ig-grid {
       width: 100%;
-      max-width: 1000px;
+      max-width: 1400px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .ig-grid:empty { display: none; }
+    .ig-status {
+      width: 100%;
+      min-height: 110px;
+      display: grid;
+      place-items: center;
+      color: var(--text-soft);
+      font-size: 14px;
+      text-align: center;
+    }
+    .ig-status[hidden] { display: none; }
+    .ig-item {
+      position: relative;
+      display: block;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .ig-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform var(--ease);
+    }
+    .ig-item:hover img { transform: scale(1.05); }
+    .ig-item .ig-type {
+      position: absolute;
+      top: 10px; right: 10px;
+      color: #fff;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.5));
+    }
+    @media (max-width: 640px) {
+      .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     }
 
     .instagram-cta {
@@ -1893,13 +2891,6 @@
         padding: 0 20px;
         gap: 16px;
       }
-      .site-nav {
-        gap: 4px;
-      }
-      .site-nav a {
-        padding: 6px 12px;
-        font-size: 12px;
-      }
       .site-header .logo small { display: none; }
       .logo { font-size: 16px; }
       .wa-float { bottom: 18px; right: 18px; width: 54px; height: 54px; }
@@ -1911,6 +2902,643 @@
       }
       .instagram-head p {
         font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .instagram .container {
+        max-width: 1480px;
+      }
+    }
+
+    .btn-phone {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .btn-phone:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 30px rgba(196, 168, 130, 0.5);
+    }
+
+    /* =========================================================
+       MOBILE RESPONSIVIDADE
+       ========================================================= */
+    @media (max-width: 480px) {
+      /* Header Mobile */
+      .site-header {
+        top: 8px;
+        width: calc(100% - 16px);
+        border-radius: 12px;
+      }
+
+      .site-header .container {
+        height: 60px;
+        padding: 0 16px;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 14px;
+      }
+
+      .logo small {
+        display: none;
+      }
+
+      .btn-sm {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+
+      /* Body padding para compensar header */
+      body {
+        padding-top: 60px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      h1, h2, h3 {
+        font-size: clamp(1.3rem, 4vw, 2rem);
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+      }
+
+      /* Hero */
+      .hero {
+        padding-top: 80px;
+        padding-bottom: 40px;
+        min-height: auto;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero .container {
+        padding-left: 12px;
+        padding-right: 12px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .hero-grid {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .hero-text {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        line-height: 1.25;
+        word-break: break-word;
+      }
+
+      .hero p.lead {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+        line-height: 1.4;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 12px;
+      }
+
+      .hero-credential {
+        font-size: 10px;
+        padding: 6px 10px;
+        margin-bottom: 8px;
+      }
+
+      .hero-credentials {
+        margin-top: 8px;
+        padding-top: 8px;
+      }
+
+      .hero-credentials li {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .hero-img-wrap {
+        display: none;
+      }
+
+      /* Authority Section */
+      .authority-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .authority-carousel-wrapper {
+        order: -1;
+      }
+
+      .credentials {
+        grid-template-columns: 1fr;
+        margin-top: 24px;
+      }
+
+      /* Diferenciais */
+      .differentials-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .differential-card {
+        padding: 20px 16px;
+        min-height: auto;
+      }
+
+      /* Procedures */
+      .procedures-grid {
+        gap: 16px;
+      }
+
+      .proc-card {
+        width: 280px;
+        min-width: 280px;
+        padding: 20px 16px;
+      }
+
+      /* Why cards */
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Location */
+      .location-grid {
+        gap: 24px;
+      }
+
+      .location-media {
+        min-height: 300px;
+      }
+
+      /* Botões de carrossel */
+      .carousel-btn,
+      .authority-carousel-prev,
+      .authority-carousel-next,
+      .gallery-prev,
+      .gallery-next {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .authority-carousel-prev,
+      .authority-carousel-next {
+        top: auto;
+        bottom: 16px;
+        transform: translateY(0);
+      }
+
+
+      .authority-carousel-prev {
+        left: 16px;
+      }
+
+      .authority-carousel-next {
+        right: 16px;
+      }
+
+      /* Pediatric */
+      .pediatric-content-column h2 {
+        font-size: 1.4rem;
+      }
+
+      .pediatric-cards-grid {
+        gap: 12px;
+      }
+
+      .pediatric-card {
+        padding: 16px 12px;
+      }
+
+      /* CTA Final */
+      .cta-inner {
+        gap: 20px;
+      }
+
+      .cta-final h2 {
+        font-size: 1.6rem;
+      }
+
+      .cta-photo {
+        width: 100px;
+        height: 100px;
+      }
+
+      /* FAQ */
+      .faq-q {
+        font-size: 1rem;
+        padding: 16px 0;
+      }
+
+      /* Footer */
+      .footer-grid {
+        gap: 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      /* Credentials Counter */
+      .credentials-counter-grid {
+        gap: 24px;
+      }
+
+      .credentials-counter-number {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 0;
+      }
+
+      .authority-carousel-wrapper .authority-photo-text {
+        padding: 16px;
+      }
+
+      .differentials {
+        padding: 60px 0;
+      }
+
+      .differentials-head {
+        margin-bottom: 40px;
+      }
+
+      .differential-card {
+        padding: 24px 20px;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-card {
+        padding: 24px 20px;
+      }
+
+      .location-info {
+        margin: 16px 0;
+      }
+
+      .cta-final h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .authority-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .procedures-section::before,
+      .procedures-section::after {
+        width: 150px;
+      }
+
+      .proc-card {
+        width: 220px;
+        min-width: 220px;
+      }
+    }
+
+    /* Botão CTA infantil — desktop mantém comportamento original */
+    .pediatric-cta-btn {
+      margin-top: 48px;
+      padding: 12px 50px;
+      display: flex;
+      max-width: 60%;
+    }
+
+    /* Seção infantil mobile */
+    @media (max-width: 767px) {
+      #infantil.pediatric {
+        overflow: hidden !important;
+        margin-top: 20px !important;
+      }
+
+      #infantil .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        box-sizing: border-box !important;
+      }
+
+      .pediatric-top-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      .pediatric-image-column {
+        padding: 0 !important;
+        width: 100% !important;
+        position: relative !important;
+      }
+
+      .pediatric-image {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+        max-width: 100% !important;
+        max-height: 300px !important;
+        width: 100% !important;
+      }
+
+      .pediatric-cta-btn {
+        max-width: 100% !important;
+        width: 100% !important;
+        justify-content: center !important;
+        margin-top: 20px !important;
+        padding: 13px 20px !important;
+        box-sizing: border-box !important;
+      }
+
+      .pediatric-content-column {
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      .pediatric-content-column h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+      }
+
+      .pediatric-cards-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        padding: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .pediatric-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .cloud-deco, .bee-deco, .heart-deco, .heart-deco-2,
+      .star-deco, .star-deco-2, .star-deco-3, .star-deco-4,
+      .star-deco-5, .dente-deco, .dente2-deco {
+        display: none !important;
+      }
+
+      .wave-divider {
+        height: 60px !important;
+        margin: 0 !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .pediatric-image img {
+        object-fit: contain !important;
+        object-position: center top !important;
+      }
+
+      .pediatric-image {
+        max-height: 340px !important;
+        background: transparent !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero {
+        padding-top: 100px !important;
+        padding-bottom: 40px !important;
+        min-height: auto !important;
+        background-position: right center !important;
+        background-size: cover !important;
+        position: relative !important;
+      }
+
+      /* Overlay escuro para o texto ficar legível sobre a foto */
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(248, 246, 242, 0.92) 0%,
+          rgba(248, 246, 242, 0.92) 55%,
+          rgba(248, 246, 242, 0.4) 100%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .hero .container {
+        position: relative;
+        z-index: 1;
+        padding: 0 20px !important;
+      }
+
+      .hero-text {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        max-width: 100% !important;
+      }
+
+      .hero-credential {
+        font-size: 10px !important;
+        padding: 6px 12px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 12px !important;
+        word-break: break-word !important;
+      }
+
+      .rotating-word {
+        min-width: auto !important;
+        display: inline !important;
+      }
+
+      .hero p.lead {
+        font-size: 0.875rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 24px !important;
+        max-width: 100% !important;
+      }
+
+      /* Remove <br> tags do lead em mobile */
+      .hero p.lead br {
+        display: none !important;
+      }
+
+      .hero-actions {
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+
+      .hero-actions .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 13px 20px !important;
+        font-size: 14px !important;
+      }
+    }
+
+    /* Botão Saiba Mais dos Diferenciais */
+    .differential-saiba-mais {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all var(--ease);
+      margin-top: 8px;
+      align-self: center;
+    }
+
+    .differential-saiba-mais:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Modal dos Diferenciais */
+    .differential-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .differential-modal.active {
+      display: flex;
+    }
+
+    .differential-modal-content {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(28, 43, 43, 0.2);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .differential-modal-image {
+      width: 100%;
+      height: 250px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .differential-modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .differential-modal-content h2 {
+      color: var(--dark);
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .differential-modal-content p {
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .differential-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--text-soft);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--ease);
+    }
+
+    .differential-modal-close:hover {
+      color: var(--dark);
+    }
+
+    @media (max-width: 767px) {
+      .authority-carousel-wrapper {
+        overflow: visible;
+        max-height: none;
+      }
+
+      .authority-photo {
+        aspect-ratio: auto;
+      }
+
+      .authority-carousel-wrapper .authority-photo-text {
+        position: static;
+        padding: 14px 12px 0;
+        margin-top: 0;
+      }
+
+      .authority-photo-text .name {
+        font-size: 18px;
+        line-height: 1.25;
+        margin-bottom: 2px;
+      }
+
+      .authority-photo-text .specialty {
+        font-size: 13px;
+        line-height: 1.35;
       }
     }
   </style>
@@ -1934,8 +3562,9 @@
 
       <nav class="site-nav" id="siteNav" aria-label="Navegação principal">
         <a href="#procedimentos">Procedimentos</a>
-        <a href="#infantil">Infantil</a>
         <a href="#sobre">Sobre Mim</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#infantil">Infantil</a>
         <a href="#avaliacoes">Avaliações</a>
         <a href="#localizacao">Localização</a>
         <a href="#instagram">Instagram</a>
@@ -1961,8 +3590,8 @@
             <div class="hero-credential">
               Cirurgião Bucomaxilofacial &middot; Florianópolis
             </div>
-            <h1 id="hero-title">Cirurgia bucomaxilofacial<br>com <span class="rotating-word"></span> e naturalidade</h1>
-            <p class="lead">Do diagnóstico à recuperação. Você conta com um<br>acompanhamento próximo em todas as etapas.<br>Unimos um planejamento minucioso a um ambiente acolhedor<br>para que todo o processo seja leve, claro e seguro.</p>
+            <h1 id="hero-title">Cirurgia Bucomaxilofacial<br>com <span class="rotating-word"></span> e naturalidade</h1>
+            <p class="lead">Do diagnóstico à recuperação. Você conta com um <br>acompanhamento próximo em todas as etapas. <br>Unimos um planejamento minucioso a um ambiente acolhedor <br>para que todo o processo seja leve, claro e seguro.</p>
             <div class="hero-actions">
               <a href="https://api.whatsapp.com/send?phone=5548984057850&text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Agendar consulta com o Dr. Gustavo pelo WhatsApp">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.274-.101-.473-.15-.671.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.655-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.525.146-.18.196-.3.296-.495.1-.21.049-.375-.025-.525-.075-.15-.671-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.21 2.095 3.18 5.077 4.47.709.301 1.265.48 1.694.615.714.225 1.365.195 1.874.12.574-.09 1.765-.72 2.016-1.425.251-.69.251-1.29.176-1.41-.075-.135-.274-.21-.571-.36zM12.06 21.328h-.006c-1.572 0-3.111-.42-4.458-1.215l-.318-.195-3.327.873.888-3.243-.21-.33a9.297 9.297 0 01-1.425-4.905c0-5.145 4.194-9.33 9.345-9.33 2.49 0 4.83.975 6.591 2.73 1.758 1.77 2.73 4.11 2.73 6.615 0 5.145-4.185 9.33-9.33 9.33zM12.06 1.121C6.046 1.121 1.155 6.012 1.155 12.026c0 1.92.502 3.795 1.455 5.445L1 23l5.655-1.485c1.59.87 3.39 1.32 5.25 1.32h.006c6.012 0 10.905-4.89 10.905-10.905 0-2.91-1.134-5.655-3.192-7.71C17.568 2.253 14.823 1.121 12.06 1.121z"/></svg>
@@ -2000,7 +3629,16 @@
             <p>Substituição de dentes perdidos com pino de titânio e planejamento digital, devolvendo mastigação, estética e segurança, com resultado fixo, estável e aparência natural no dia a dia</p>
                       </article>
 
-          <!-- CARD 2: Enxertos Ósseos -->
+          <!-- CARD 2: Implantes com Carga Imediata -->
+          <article class="proc-card">
+            <div class="proc-icon" aria-hidden="true">
+              <img src="/IMAGENS/Implantes-Dentários.png" alt="Ícone Implantes com Carga Imediata" />
+            </div>
+            <h3>Implantes com Carga Imediata</h3>
+            <p>Colocação de dentes fixos em poucos dias sem necessidade de enxerto ósseo, utilizando técnicas avançadas que aproveitam o osso existente para um tratamento mais rápido, seguro e confortável.</p>
+          </article>
+
+          <!-- CARD 3: Enxertos Ósseos -->
           <article class="proc-card">
             <div class="proc-icon" aria-hidden="true">
               <img src="/IMAGENS/ENXERTO.png" alt="Ícone Enxertos Ósseos" />
@@ -2024,7 +3662,7 @@
               <img src="/IMAGENS/Extração-de-Siso.png" alt="Ícone Extração de Siso" />
             </div>
             <h3>Extração de Siso</h3>
-            <p>Remoção do dente do siso para evitar dor, inflamações e desalinhamento, indicada quando não há espaço na arcada, com técnica segura e recuperação controlada</p>
+            <p>Remoção do dente do siso (remoção dos terceiros molares) para evitar dor, inflamações e desalinhamento, indicada quando não há espaço na arcada, com técnica segura e recuperação controlada</p>
           </article>
 
           <!-- CARD 5: Reconstrução -->
@@ -2069,7 +3707,7 @@
               <img src="/IMAGENS/Extração-de-Siso.png" alt="Ícone Extração de Siso" />
             </div>
             <h3>Extração de Siso</h3>
-            <p>Remoção do dente do siso para evitar dor, inflamações e desalinhamento, indicada quando não há espaço na arcada, com técnica segura e recuperação controlada</p>
+            <p>Remoção do dente do siso (remoção dos terceiros molares) para evitar dor, inflamações e desalinhamento, indicada quando não há espaço na arcada, com técnica segura e recuperação controlada</p>
           </article>
 
           <!-- DUPLICADOS - CARD 5: Reconstrução -->
@@ -2118,41 +3756,57 @@
         </div>
 
         <div class="authority-grid">
-          <div class="authority-photo">
-            <img
-              src="/IMAGENS/GUSTAVO.png"
-              alt="Dr. Gustavo Soares Cunha em ambiente clínico"
-              loading="lazy"
-            />
+          <div class="authority-carousel-wrapper">
+            <div class="authority-carousel">
+              <div class="authority-photo">
+                <img src="/IMAGENS/GUSTAVO.png" alt="Dr. Gustavo Soares Cunha em ambiente clínico" loading="lazy"/>
+              </div>
+              <div class="authority-photo">
+                <img src="/IMG_2613.jpg" alt="Dr. Gustavo em evento profissional" loading="lazy" class="img-offset"/>
+              </div>
+              <div class="authority-photo">
+                <img src="/formatura.jpeg" alt="Dr. Gustavo em sua formatura" loading="lazy"/>
+              </div>
+            </div>
             <div class="authority-photo-text">
               <div class="name">Dr. Gustavo Cunha</div>
-              <div class="specialty">Cirurgião Bucomaxilofacial</div>
+              <div class="specialty">Especialista em Cirurgia e Traumatologia Bucomaxilofacial</div>
             </div>
+            <button class="carousel-btn authority-carousel-prev" aria-label="Imagem anterior" title="Anterior">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="carousel-btn authority-carousel-next" aria-label="Próxima imagem" title="Próximo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
 
           <div>
-            <p>Cirurgião <strong>bucomaxilofacial</strong> formado pela UFSC com passagem pelo Hospital Infantil Joana de Gusmão. Desde 2015, atua em cirurgia da face para crianças e adultos, transformando medo em confiança através de conhecimento e atendimento acolhedor.</p>
+            <p><strong>Especialista em Cirurgia e Traumatologia Bucomaxilofacial</strong>, formado pela UFSC. Desde 2017, atua em cirurgia da face para crianças e adultos, com abordagem cuidadosa e objetiva.</p>
 
-            <p>Clareza na explicação, atenção às preocupações do paciente e presença em todas as etapas, do diagnóstico à recuperação. O objetivo é que cada paciente se sinta seguro, bem cuidado e transformado, sempre em ambiente cirúrgico seguro.</p>
+            <p>Experiência em atendimento hospitalar infantil, com atuação voltada a casos de Cirurgia e Traumatologia Bucomaxilofacial. Atuação nos hospitais Baía Sul e SOS Cárdio, em atendimentos de trauma facial, emergências e cirurgias eletivas.</p>
+
+            <p>Clareza na explicação, atenção às preocupações do paciente e presença em todas as etapas, do diagnóstico à recuperação. Participação contínua em cursos, congressos e atualizações profissionais.</p>
 
             <div class="credentials" style="margin-top: 32px;">
               <div class="credential">
               <div style="height: 70px; margin-top: -12px; margin-bottom: 0px; display: flex; align-items: center; justify-content: center;">
                 <img src="/IMAGENS/UFSC.png" alt="Logo UFSC" style="height: 100%; width: auto; object-fit: contain; object-position: center;">
               </div>
-                <h4>Formação</h4>
                 <p>Graduado pela Universidade Federal de Santa Catarina (UFSC).</p>
               </div>
               <div class="credential">
                 <div class="big-number" style="font-size: 32px; line-height: 1;">✓</div>
-                <h4>Especialização dedicada</h4>
-                <p>Experiência concentrada em cirurgia bucomaxilofacial. São base nas cirurgias.</p>
+                <h4>Especialização</h4>
+                <p>Cirurgia e Traumatologia Bucomaxilofacial.</p>
               </div>
               <div class="credential">
               <div style="height: 100px; margin-top: -12px; margin-bottom: 0px; display: flex; align-items: center; justify-content: center;">
                 <img src="/IMAGENS/Selo-CBMF.png" alt="Selo CBMF" style="height: 100%; width: auto; object-fit: contain; object-position: center;">
               </div>
-                <h4>CBMF</h4>
                 <p>Membro do Colégio Brasileiro de Cirurgia Bucomaxilofacial.</p>
               </div>
             </div>
@@ -2176,7 +3830,7 @@
         <div class="credentials-counter-grid">
           <div class="credentials-counter-card">
             <div class="credentials-counter-number" data-final="3">0</div>
-            <p>Gerações de tradição</p>
+            <p>Mais de três gerações da família dedicadas à Odontologia.</p>
           </div>
           <div class="credentials-counter-card">
             <div class="credentials-counter-number" data-final="2000">0</div>
@@ -2193,7 +3847,7 @@
     <!-- ============================================================
          SEÇÃO DIFERENCIAIS
          ============================================================ -->
-    <section class="differentials" aria-labelledby="differentials-title">
+    <section id="diferenciais" class="differentials" aria-labelledby="differentials-title">
       <div class="container">
         <div class="differentials-head">
           <div class="eyebrow">Diferenciais</div>
@@ -2207,6 +3861,7 @@
             </div>
             <h3>Estrutura Completa</h3>
             <p>Consultório equipado com tecnologia de ponta.</p>
+            <button class="differential-saiba-mais" data-modal="modal-estrutura">Saiba mais</button>
           </div>
 
           <div class="differential-card differential-card-teal-custom">
@@ -2215,6 +3870,7 @@
             </div>
             <h3>Conforto Pré e Pós</h3>
             <p>Clínica ambientada para bem-estar total.</p>
+            <button class="differential-saiba-mais" data-modal="modal-conforto">Saiba mais</button>
           </div>
 
           <div class="differential-card">
@@ -2223,6 +3879,7 @@
             </div>
             <h3>Sorvete Pós-Operatório</h3>
             <p>Alívio natural do desconforto pós-cirurgia.</p>
+            <button class="differential-saiba-mais" data-modal="modal-sorvete">Saiba mais</button>
           </div>
 
           <div class="differential-card differential-card-teal-custom">
@@ -2231,6 +3888,7 @@
             </div>
             <h3>Cadeira de Massagem</h3>
             <p>Relaxamento durante a permanência.</p>
+            <button class="differential-saiba-mais" data-modal="modal-cadeira">Saiba mais</button>
           </div>
 
           <div class="differential-card">
@@ -2239,6 +3897,7 @@
             </div>
             <h3>Laser Terapia Pós-Op</h3>
             <p>Laser de baixa potência para recuperação.</p>
+            <button class="differential-saiba-mais" data-modal="modal-laser">Saiba mais</button>
           </div>
 
           <div class="differential-card differential-card-teal-custom">
@@ -2247,6 +3906,62 @@
             </div>
             <h3>Casos Complexos</h3>
             <p>Especialista em sisos e estruturas delicadas.</p>
+            <button class="differential-saiba-mais" data-modal="modal-casos">Saiba mais</button>
+          </div>
+        </div>
+
+        <!-- MODAIS DOS DIFERENCIAIS -->
+        <div id="modal-estrutura" class="differential-modal">
+          <div class="differential-modal-content">
+            <button class="differential-modal-close">&times;</button>
+            <div class="differential-modal-image">Espaço para imagem</div>
+            <h2>Estrutura Completa</h2>
+            <p>Nosso consultório é equipado com a mais avançada tecnologia em cirurgia bucomaxilofacial. Contamos com equipamentos de tomografia 3D, microscópios cirúrgicos, sistema de imaging de alta resolução e instrumentação cirúrgica de última geração. Tudo isso garante precisão, segurança e os melhores resultados para cada procedimento.</p>
+          </div>
+        </div>
+
+        <div id="modal-conforto" class="differential-modal">
+          <div class="differential-modal-content">
+            <button class="differential-modal-close">&times;</button>
+            <div class="differential-modal-image">Espaço para imagem</div>
+            <h2>Conforto Pré e Pós</h2>
+            <p>A experiência do paciente é nossa prioridade. Antes do procedimento, você se sente acolhido em um ambiente climatizado e relaxante, com design moderno e equipe atenta. Após a cirurgia, oferecemos acompanhamento especializado, orientações de cuidado personalizado e suporte contínuo para sua recuperação tranquila e confortável.</p>
+          </div>
+        </div>
+
+        <div id="modal-sorvete" class="differential-modal">
+          <div class="differential-modal-content">
+            <button class="differential-modal-close">&times;</button>
+            <div class="differential-modal-image">Espaço para imagem</div>
+            <h2>Sorvete Pós-Operatório</h2>
+            <p>Oferecemos sorvete como parte do protocolo de conforto pós-operatório. O frio natural alivia naturalmente a inflamação e o desconforto após a cirurgia, enquanto oferece hidratação e nutrição. É uma forma simples, natural e eficaz de potencializar sua recuperação nos primeiros dias após o procedimento.</p>
+          </div>
+        </div>
+
+        <div id="modal-cadeira" class="differential-modal">
+          <div class="differential-modal-content">
+            <button class="differential-modal-close">&times;</button>
+            <div class="differential-modal-image">Espaço para imagem</div>
+            <h2>Cadeira de Massagem</h2>
+            <p>Durante sua permanência no consultório, você pode relaxar em nossa cadeira de massagem terapêutica. A massagem ajuda a reduzir a ansiedade pré-operatória, alivia tensões musculares e promove bem-estar. É parte de nosso diferencial em oferecer a melhor experiência possível durante todo o processo.</p>
+          </div>
+        </div>
+
+        <div id="modal-laser" class="differential-modal">
+          <div class="differential-modal-content">
+            <button class="differential-modal-close">&times;</button>
+            <div class="differential-modal-image">Espaço para imagem</div>
+            <h2>Laser Terapia Pós-Op</h2>
+            <p>Utilizamos laser de baixa potência (fotobiomodulação) para acelerar a recuperação pós-operatória. A terapia a laser reduz inflamação, estimula a cicatrização natural dos tecidos e diminui o desconforto. O tratamento é indolor, não invasivo e potencia significativamente o processo de regeneração celular.</p>
+          </div>
+        </div>
+
+        <div id="modal-casos" class="differential-modal">
+          <div class="differential-modal-content">
+            <button class="differential-modal-close">&times;</button>
+            <div class="differential-modal-image">Espaço para imagem</div>
+            <h2>Casos Complexos</h2>
+            <p>O Dr. Gustavo é especialista em cirurgias complexas, incluindo extração de sisos inclusos em posições difíceis, reconstrução de estruturas delicadas, e procedimentos que exigem precisão cirúrgica avançada. Com experiência hospitalar e formação cirúrgica específica, trata casos que requerem expertise diferenciada com segurança e excelência.</p>
           </div>
         </div>
       </div>
@@ -2274,7 +3989,7 @@
             <img src="/IMAGENS/DENTE2.png" alt="Dente decorativo" class="dente2-deco" />
 
             <!-- BOTÃO -->
-            <a href="https://api.whatsapp.com/send?phone=5548984057850&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20atendimento%20infantil" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 48px; padding: 12px 50px; display: flex; max-width: 60%;">
+            <a href="https://api.whatsapp.com/send?phone=5548984057850&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20atendimento%20infantil" target="_blank" rel="noopener" class="btn btn-primary pediatric-cta-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.274-.101-.473-.15-.671.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.655-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.525.146-.18.196-.3.296-.495.1-.21.049-.375-.025-.525-.075-.15-.671-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.21 2.095 3.18 5.077 4.47.709.301 1.265.48 1.694.615.714.225 1.365.195 1.874.12.574-.09 1.765-.72 2.016-1.425.251-.69.251-1.29.176-1.41-.075-.135-.274-.21-.571-.36zM12.06 21.328h-.006c-1.572 0-3.111-.42-4.458-1.215l-.318-.195-3.327.873.888-3.243-.21-.33a9.297 9.297 0 01-1.425-4.905c0-5.145 4.194-9.33 9.345-9.33 2.49 0 4.83.975 6.591 2.73 1.758 1.77 2.73 4.11 2.73 6.615 0 5.145-4.185 9.33-9.33 9.33zM12.06 1.121C6.046 1.121 1.155 6.012 1.155 12.026c0 1.92.502 3.795 1.455 5.445L1 23l5.655-1.485c1.59.87 3.39 1.32 5.25 1.32h.006c6.012 0 10.905-4.89 10.905-10.905 0-2.91-1.134-5.655-3.192-7.71C17.568 2.253 14.823 1.121 12.06 1.121z"/></svg>
               Agendar consulta infantil
             </a>
@@ -2286,7 +4001,7 @@
             <h2 id="pediatric-title">Cirurgias bucais para<br>crianças e adolescentes</h2>
 
             <p class="pediatric-description">
-              Crianças podem ter medo e ansiedade. Por isso, o atendimento é especial: ambiente acolhedor, técnica delicada e explicações simples. O Dr. Gustavo realiza extrações de dentes, frenotomia lingual, atendimento de traumas. Cada procedimento é feito no ritmo da criança, para que ela se sinta segura e confiante com nossa equipe.
+              Crianças podem ter medo e ansiedade. Por isso, o atendimento é especial: ambiente acolhedor, técnica delicada e explicações simples. O Dr. Gustavo realiza extrações de dentes, frenectomia lingual, atendimento de traumas. Cada procedimento é feito no ritmo da criança, para que ela se sinta segura e confiante com nossa equipe. Quando indicado, os procedimentos também podem ser realizados com acompanhamento de uma equipe de Anestesiologia.
             </p>
 
             <!-- SEÇÃO INFERIOR - 4 CARDS SEM DESCRIÇÃO -->
@@ -2297,8 +4012,8 @@
               </article>
 
               <article class="pediatric-card">
-                <img src="/IMAGENS/LINGUA.png" alt="Frenotomia Lingual" class="pediatric-card-icon">
-                <h3>Frenotomia Lingual</h3>
+                <img src="/IMAGENS/LINGUA.png" alt="Frenectomia Lingual" class="pediatric-card-icon">
+                <h3>Frenectomia Lingual</h3>
               </article>
 
               <article class="pediatric-card">
@@ -2311,8 +4026,35 @@
                 <h3>Cirurgias Complexas</h3>
               </article>
             </div>
+
           </div>
         </div>
+
+        <article class="pediatric-review" aria-label="Avaliação de Mariana Motta Jardim sobre o atendimento infantil">
+          <div class="pediatric-review-author">
+            <div class="pediatric-review-person">
+              <div class="pediatric-review-avatar" aria-hidden="true">M</div>
+              <div>
+                <div class="pediatric-review-name">Mariana Motta Jardim</div>
+                <div class="pediatric-review-meta">9 avaliações</div>
+              </div>
+            </div>
+
+            <div class="pediatric-review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <div class="pediatric-review-date">34 semanas atrás</div>
+            <div class="pediatric-review-source"><span aria-hidden="true">✓</span> Avaliação no Google</div>
+          </div>
+
+          <blockquote class="pediatric-review-text">
+            <p>Passamos por uma situação delicada com minha filha enquanto estávamos no Brasil: ela precisava de uma cirurgia odontológica imediata para retirar um dentinho que não conseguia nascer, pois estava preso junto a outros na arcada dentária. O doutor nos atendeu prontamente e foi simplesmente maravilhoso!</p>
+
+            <p>Desde a recepção até as assistentes que auxiliaram na cirurgia, o atendimento da clínica foi impecável. O doutor tem um atendimento extraordinário — extremamente humano, cuidadoso e atencioso. Ele nos deu suporte antes, durante e depois do procedimento, sempre explicando tudo com calma.</p>
+
+            <p>Mesmo após quase quatro meses da cirurgia, já morando na Austrália, ele continua disponível para tirar nossas dúvidas no pós-operatório. Isso mostra o quanto ele é dedicado e comprometido com o bem-estar dos pacientes.</p>
+
+            <p>Super recomendo! Sem dúvidas, o melhor! Atendimento realmente diferenciado, especialmente com crianças.</p>
+          </blockquote>
+        </article>
       </div>
 
       <!-- WAVE DIVISOR -->
@@ -2331,7 +4073,7 @@
         <div class="reviews-embed">
           <!-- Elfsight Google Reviews | Untitled Google Reviews -->
           <script src="https://elfsightcdn.com/platform.js" async></script>
-          <div class="elfsight-app-9b70dd23-f9bf-4ed8-bdd2-f0bb11ddcf8d" data-elfsight-app-lazy></div>
+          <div class="elfsight-app-506e5a23-7585-4cb5-bce7-47198f90a6f4" data-elfsight-app-lazy></div>
         </div>
         
         <div class="section-cta">
@@ -2379,13 +4121,57 @@
           </div>
 
           <div class="location-media">
-            <div class="location-photo">
-              <img
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80"
-                alt="Ambiente do consultório"
-                loading="lazy"
-              />
+            <div class="location-photo" id="loc-carousel" aria-roledescription="carrossel" aria-label="Fotos do consultório">
+              <img class="loc-slide active" src="/IMAGENS/FACHADA.jpg" alt="Fachada do consultório" loading="lazy" />
+              <img class="loc-slide" src="/CONSULTORIO.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON1.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON2.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON3.png"  alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON4.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON5.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON6.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON7.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <img class="loc-slide" src="/CON8.jpeg" alt="Consultório — ambiente interno" loading="lazy" />
+              <button type="button" class="loc-btn loc-prev" aria-label="Foto anterior">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button type="button" class="loc-btn loc-next" aria-label="Próxima foto">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              <div class="loc-dots" aria-hidden="true"></div>
             </div>
+            <script>
+              // Carrossel de fotos do consultório (seção Onde atendemos)
+              (function () {
+                var root = document.getElementById('loc-carousel');
+                if (!root) return;
+                var slides = root.querySelectorAll('.loc-slide');
+                var dotsBox = root.querySelector('.loc-dots');
+                var index = 0, timer = null;
+
+                slides.forEach(function (_, i) {
+                  var dot = document.createElement('span');
+                  if (i === 0) dot.className = 'active';
+                  dotsBox.appendChild(dot);
+                });
+                var dots = dotsBox.children;
+
+                function show(i) {
+                  slides[index].classList.remove('active');
+                  dots[index].classList.remove('active');
+                  index = (i + slides.length) % slides.length;
+                  slides[index].classList.add('active');
+                  dots[index].classList.add('active');
+                }
+                function auto() {
+                  clearInterval(timer);
+                  timer = setInterval(function () { show(index + 1); }, 4500);
+                }
+                root.querySelector('.loc-prev').addEventListener('click', function () { show(index - 1); auto(); });
+                root.querySelector('.loc-next').addEventListener('click', function () { show(index + 1); auto(); });
+                auto();
+              })();
+            </script>
             <div class="location-map">
               <iframe
                 src="https://maps.google.com/maps?q=Rua+Presidente+Nereu+Ramos,+78,+Florian%C3%B3polis,+SC&output=embed"
@@ -2410,11 +4196,120 @@
           <p>Veja antes e depois, detalhes dos procedimentos e histórias de transformação.</p>
         </div>
 
-        <div class="instagram-feed">
-          <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
-          <script src="https://elfsightcdn.com/platform.js" async></script>
-          <div class="elfsight-app-da55fafb-9d27-45ef-80da-c3d6585ec85c" data-elfsight-app-lazy></div>
+        <div class="ig-profile" id="ig-profile">
+          <div class="ig-avatar"><img id="ig-avatar-img" src="" alt="" loading="lazy"></div>
+          <div class="ig-identity">
+            <div class="ig-name" id="ig-name"></div>
+            <div class="ig-username" id="ig-username"></div>
+          </div>
+          <div class="ig-stats" id="ig-stats"></div>
+          <a class="ig-follow" id="ig-follow"
+             href="https://www.instagram.com/gustavocunha.bucomaxilo/"
+             target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.057-1.645.069-4.849.069-3.204 0-3.584-.012-4.849-.069-3.259-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+            </svg>
+            Seguir
+          </a>
         </div>
+
+        <div class="instagram-feed">
+          <div class="ig-status" id="ig-status" role="status">Carregando publicações...</div>
+          <div class="ig-grid" id="ig-grid" aria-live="polite"></div>
+        </div>
+        <script>
+          // Feed do Instagram via rota segura do servidor (/api/instagram).
+          // O token nunca chega ao navegador. Se a API falhar, a grade fica
+          // oculta e a seção mantém apenas o botão para o perfil.
+          (function () {
+            var grid = document.getElementById('ig-grid');
+            var status = document.getElementById('ig-status');
+            if (!grid || !status || !window.fetch) return;
+
+            function showUnavailable() {
+              status.hidden = false;
+              status.textContent = 'As publicações estão temporariamente indisponíveis. Você ainda pode acessar o perfil completo abaixo.';
+            }
+
+            function compact(n) {
+              if (n === null || n === undefined) return null;
+              try {
+                return new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 }).format(n);
+              } catch (e) { return String(n); }
+            }
+
+            function renderProfile(p) {
+              if (!p || !p.username) return;
+              var box = document.getElementById('ig-profile');
+              var avatar = document.getElementById('ig-avatar-img');
+              if (p.picture) { avatar.src = p.picture; }
+              else { avatar.parentNode.style.display = 'none'; }
+              document.getElementById('ig-name').textContent = p.name || p.username;
+              document.getElementById('ig-username').textContent = '@' + p.username;
+              document.getElementById('ig-follow').href = 'https://www.instagram.com/' + p.username + '/';
+
+              var stats = document.getElementById('ig-stats');
+              [[p.media_count, 'Posts'], [p.followers_count, 'Seguidores'], [p.follows_count, 'Seguindo']]
+                .forEach(function (s) {
+                  if (s[0] === null || s[0] === undefined) return;
+                  var div = document.createElement('div');
+                  var strong = document.createElement('strong');
+                  strong.textContent = compact(s[0]);
+                  var span = document.createElement('span');
+                  span.textContent = s[1];
+                  div.appendChild(strong);
+                  div.appendChild(span);
+                  stats.appendChild(div);
+                });
+              box.classList.add('is-visible');
+            }
+
+            fetch('/api/instagram')
+              .then(function (r) {
+                if (!r.ok) throw new Error('instagram_unavailable');
+                return r.json();
+              })
+              .then(function (data) {
+                renderProfile(data && data.profile);
+                var posts = (data && data.posts) || [];
+                var validPosts = posts.slice(0, 6).filter(function (p) {
+                  return p && p.cover && p.permalink;
+                });
+
+                if (!validPosts.length) {
+                  showUnavailable();
+                  return;
+                }
+
+                status.hidden = true;
+                validPosts.forEach(function (p) {
+                  if (!p || !p.cover || !p.permalink) return;
+                  var a = document.createElement('a');
+                  a.className = 'ig-item';
+                  a.href = p.permalink;
+                  a.target = '_blank';
+                  a.rel = 'noopener';
+
+                  var img = document.createElement('img');
+                  img.src = p.cover;
+                  img.loading = 'lazy';
+                  img.alt = p.caption ? p.caption.slice(0, 120) : 'Publicação no Instagram';
+                  img.onerror = function () { a.remove(); };
+                  a.appendChild(img);
+
+                  if (p.media_type === 'VIDEO' || p.media_type === 'REELS' || p.media_type === 'CAROUSEL_ALBUM') {
+                    var badge = document.createElement('span');
+                    badge.className = 'ig-type';
+                    badge.setAttribute('aria-hidden', 'true');
+                    badge.textContent = p.media_type === 'CAROUSEL_ALBUM' ? '❐' : '▶';
+                    a.appendChild(badge);
+                  }
+                  grid.appendChild(a);
+                });
+              })
+              .catch(showUnavailable);
+          })();
+        </script>
 
         <div class="instagram-cta">
           <a href="https://www.instagram.com/gustavocunha.bucomaxilo/"
@@ -2528,7 +4423,7 @@
             </button>
             <div class="faq-a">
               <div class="faq-a-inner">
-                A tranquilidade do paciente é prioridade. Começamos com explicação clara sobre cada etapa. Antes da cirurgia, ofereço sedação leve (você relaxa e fica consciente) ou sedação moderada (muitos pacientes dormem). Não há dor, apenas sensações. A maioria dos pacientes relata que é menos assustador do que esperavam.
+                A tranquilidade do paciente é prioridade. Começamos com explicação clara sobre cada etapa. Antes da cirurgia, ofereço sedação leve (você relaxa e fica consciente) ou sedação moderada (muitos pacientes dormem). Não há dor, apenas sensações. A maioria dos pacientes relata que é menos desconfortável do que esperavam.
               </div>
             </div>
           </div>
@@ -2541,7 +4436,7 @@
             </button>
             <div class="faq-a">
               <div class="faq-a-inner">
-                Cada cirurgia começa com diagnóstico e planejamento detalhado. Você participa dessa conversasabe o que será feito e por quê. O resultado busca naturalidade: quando você se olha no espelho, deve se reconhecer, apenas melhorado. Planejamento 3D antes da cirurgia reduz surpresas.
+                Cada cirurgia começa com diagnóstico e planejamento detalhado. Você participa dessa conversa. Sabe o que será feito e por quê. O resultado busca naturalidade: quando você se olha no espelho, deve se reconhecer, apenas melhorado. Planejamento 3D antes da cirurgia reduz surpresas.
               </div>
             </div>
           </div>
@@ -2612,12 +4507,18 @@
             Uma conversa pode ser o início de uma <em>decisão bem tomada</em>.
           </h2>
           <p>
-            Conversar é o primeiro passo. A equipe está aqui para ouvir suas preocupações, sem pressa, no seu tempo.
+            Conversar é o primeiro passo. A equipe está aqui para ouvir suas preocupações com total dedicação e atenção.
           </p>
-          <a href="https://api.whatsapp.com/send?phone=5548984057850&text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o" target="_blank" rel="noopener" class="btn btn-whatsapp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.274-.101-.473-.15-.671.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.655-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.525.146-.18.196-.3.296-.495.1-.21.049-.375-.025-.525-.075-.15-.671-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.21 2.095 3.18 5.077 4.47.709.301 1.265.48 1.694.615.714.225 1.365.195 1.874.12.574-.09 1.765-.72 2.016-1.425.251-.69.251-1.29.176-1.41-.075-.135-.274-.21-.571-.36zM12.06 21.328h-.006c-1.572 0-3.111-.42-4.458-1.215l-.318-.195-3.327.873.888-3.243-.21-.33a9.297 9.297 0 01-1.425-4.905c0-5.145 4.194-9.33 9.345-9.33 2.49 0 4.83.975 6.591 2.73 1.758 1.77 2.73 4.11 2.73 6.615 0 5.145-4.185 9.33-9.33 9.33zM12.06 1.121C6.046 1.121 1.155 6.012 1.155 12.026c0 1.92.502 3.795 1.455 5.445L1 23l5.655-1.485c1.59.87 3.39 1.32 5.25 1.32h.006c6.012 0 10.905-4.89 10.905-10.905 0-2.91-1.134-5.655-3.192-7.71C17.568 2.253 14.823 1.121 12.06 1.121z"/></svg>
-            Agendar consulta
-          </a>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center;">
+            <a href="https://api.whatsapp.com/send?phone=5548984057850&text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o" target="_blank" rel="noopener" class="btn btn-whatsapp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.274-.101-.473-.15-.671.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.655-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.525.146-.18.196-.3.296-.495.1-.21.049-.375-.025-.525-.075-.15-.671-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.21 2.095 3.18 5.077 4.47.709.301 1.265.48 1.694.615.714.225 1.365.195 1.874.12.574-.09 1.765-.72 2.016-1.425.251-.69.251-1.29.176-1.41-.075-.135-.274-.21-.571-.36zM12.06 21.328h-.006c-1.572 0-3.111-.42-4.458-1.215l-.318-.195-3.327.873.888-3.243-.21-.33a9.297 9.297 0 01-1.425-4.905c0-5.145 4.194-9.33 9.345-9.33 2.49 0 4.83.975 6.591 2.73 1.758 1.77 2.73 4.11 2.73 6.615 0 5.145-4.185 9.33-9.33 9.33zM12.06 1.121C6.046 1.121 1.155 6.012 1.155 12.026c0 1.92.502 3.795 1.455 5.445L1 23l5.655-1.485c1.59.87 3.39 1.32 5.25 1.32h.006c6.012 0 10.905-4.89 10.905-10.905 0-2.91-1.134-5.655-3.192-7.71C17.568 2.253 14.823 1.121 12.06 1.121z"/></svg>
+              Agendar consulta
+            </a>
+            <a href="tel:4898405-7850" class="btn btn-phone" aria-label="Ligar para (48) 98405-7850" style="background: #C4A882; color: #ffffff; font-weight: 600;">
+              <img src="/IMAGENS/telefone.png" alt="Ícone telefone" style="width: 18px; height: 18px; object-fit: contain; filter: brightness(0) invert(1);">
+              Ligar
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -2731,16 +4632,48 @@
     (function () {
       const toggle = document.getElementById('navToggle');
       const nav = document.getElementById('siteNav');
-      toggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', isOpen);
+
+      if (!toggle || !nav) {
+        console.error('Menu elements not found');
+        return;
+      }
+
+      toggle.addEventListener('click', (e) => {
+        console.log('🔴 CLIQUE NO HAMBÚRGUER DETECTADO');
+        e.preventDefault();
+        e.stopPropagation();
+        nav.classList.toggle('open');
+        const isOpen = nav.classList.contains('open');
+        console.log('Menu agora está:', isOpen ? '✅ ABERTO' : '❌ FECHADO');
+
+        // Debug CSS
+        const styles = window.getComputedStyle(nav);
+        console.log('Display:', styles.display);
+        console.log('Visibility:', styles.visibility);
+        console.log('Opacity:', styles.opacity);
+        console.log('Position:', styles.position);
+        console.log('Top:', styles.top);
+        console.log('Z-index:', styles.zIndex);
+        console.log('Height:', styles.height);
+        console.log('Classes:', nav.className);
+
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
+
       /* Fecha o menu ao clicar em um link */
       nav.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           nav.classList.remove('open');
           toggle.setAttribute('aria-expanded', 'false');
         });
+      });
+
+      /* Fecha o menu ao clicar fora */
+      document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
       });
     })();
   </script>
@@ -2781,6 +4714,83 @@
     })();
   </script>
 
+
+  <script>
+    /* Carrossel de Autoridade — Loop Infinito com DOM Rotation */
+    (() => {
+      const carousel = document.querySelector('.authority-carousel');
+      const prevBtn = document.querySelector('.authority-carousel-prev');
+      const nextBtn = document.querySelector('.authority-carousel-next');
+      if (!carousel) return;
+
+      const wrapper = carousel.parentElement;
+      const PHOTO_WIDTH = wrapper.offsetWidth;
+      const DURATION = 500;
+      const AUTOPLAY_MS = 5000;
+      const PAUSE_MS = 12000;
+
+      let offset = 0;
+      let animating = false;
+      let autoplayId = null;
+      let resumeId = null;
+
+      const setInstant = () => {
+        carousel.style.transition = 'none';
+        carousel.style.transform = `translateX(${offset}px)`;
+      };
+
+      const setAnimated = () => {
+        carousel.style.transition = `transform ${DURATION}ms cubic-bezier(0.4,0,0.2,1)`;
+        carousel.style.transform = `translateX(${offset}px)`;
+      };
+
+      const next = () => {
+        if (animating) return;
+        animating = true;
+        offset -= PHOTO_WIDTH;
+        setAnimated();
+        setTimeout(() => {
+          carousel.appendChild(carousel.firstElementChild);
+          offset += PHOTO_WIDTH;
+          setInstant();
+          animating = false;
+        }, DURATION);
+      };
+
+      const prev = () => {
+        if (animating) return;
+        animating = true;
+        carousel.prepend(carousel.lastElementChild);
+        offset -= PHOTO_WIDTH;
+        setInstant();
+        carousel.getBoundingClientRect();
+        offset += PHOTO_WIDTH;
+        setAnimated();
+        setTimeout(() => { animating = false; }, DURATION);
+      };
+
+      const startAutoplay = () => {
+        if (autoplayId) return;
+        autoplayId = setInterval(next, AUTOPLAY_MS);
+      };
+
+      const stopAutoplay = () => {
+        clearInterval(autoplayId);
+        autoplayId = null;
+      };
+
+      const pauseThenResume = () => {
+        stopAutoplay();
+        clearTimeout(resumeId);
+        resumeId = setTimeout(startAutoplay, PAUSE_MS);
+      };
+
+      nextBtn?.addEventListener('click', () => { next(); pauseThenResume(); });
+      prevBtn?.addEventListener('click', () => { prev(); pauseThenResume(); });
+
+      startAutoplay();
+    })();
+  </script>
 
   <script>
     /* Efeito typewriter com palavra rotativa */
@@ -2833,8 +4843,9 @@
       if (!grid || !prevBtn || !nextBtn) return;
 
       // ─── Configuração ────────────────────────────────────────
-      const CARD_W        = 264;   // largura do card em px
-      const GAP           = 24;    // gap do CSS em px
+      const isMobile      = window.innerWidth <= 767;
+      const CARD_W        = isMobile ? 240 : 264;   // largura do card em px
+      const GAP           = isMobile ? 16  : 24;    // gap do CSS em px
       const STEP          = CARD_W + GAP;
       const DURATION      = 500;   // ms da animação de slide
       const AUTOPLAY_MS   = 3000;  // intervalo do autoplay em ms
@@ -2918,6 +4929,43 @@
 
       // ─── Inicia ──────────────────────────────────────────────
       startAutoplay();
+    })();
+
+    // ═══════════════════════════════════════════════════════════
+    // MODAIS DOS DIFERENCIAIS
+    // ═══════════════════════════════════════════════════════════
+    (() => {
+      const buttons = document.querySelectorAll('.differential-saiba-mais');
+      const modals = document.querySelectorAll('.differential-modal');
+      const closeButtons = document.querySelectorAll('.differential-modal-close');
+
+      buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const modalId = button.getAttribute('data-modal');
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add('active');
+          }
+        });
+      });
+
+      closeButtons.forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+          const modal = closeBtn.closest('.differential-modal');
+          if (modal) {
+            modal.classList.remove('active');
+          }
+        });
+      });
+
+      modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+          }
+        });
+      });
     })();
   </script>
 

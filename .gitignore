@@ -1,0 +1,12 @@
+# Variáveis de ambiente — nunca commitar
+.env
+.env.*
+!.env.example
+
+# Dependências / build
+node_modules/
+.vercel/
+
+# Sistema
+.DS_Store
+Thumbs.db
