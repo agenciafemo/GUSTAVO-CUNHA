@@ -4264,7 +4264,13 @@
               box.classList.add('is-visible');
             }
 
-            fetch('/api/instagram')
+            // Em desenvolvimento local (Live Server etc.) não existe a função
+            // serverless; nesse caso busca o feed direto da API em produção.
+            var apiBase = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+              ? 'https://gustavo-cunha.vercel.app'
+              : '';
+
+            fetch(apiBase + '/api/instagram')
               .then(function (r) {
                 if (!r.ok) throw new Error('instagram_unavailable');
                 return r.json();

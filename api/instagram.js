@@ -22,6 +22,8 @@ module.exports = async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   // Cache na CDN: 30 min fresco + serve versão antiga enquanto revalida
   res.setHeader('Cache-Control', 's-maxage=1800, stale-while-revalidate=86400');
+  // Dados públicos: libera consumo pelo ambiente de desenvolvimento (Live Server)
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
   if (!token) {

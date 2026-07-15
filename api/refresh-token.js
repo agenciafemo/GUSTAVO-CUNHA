@@ -59,10 +59,15 @@ module.exports = async function handler(req, res) {
   // --- Persistência do novo token -----------------------------------------
   const persisted = await persistOnVercel(refreshed.access_token);
 
+  // A Meta devolve um token com string diferente, e as funções só enxergam a
+  // env nova após um deploy — então dispara um redeploy da produção.
+  const redeployed = persisted ? await redeployProduction() : false;
+
   return res.status(200).json({
     ok: true,
     expires_in_days: expiresInDays,
     persisted, // true = env atualizada automaticamente; false = atualizar no painel
+    redeployed, // true = produção redeployada com o token novo
     note: persisted
       ? 'Novo token gravado na variável de ambiente do projeto.'
       : 'Renovado na Meta, mas VERCEL_TOKEN/VERCEL_PROJECT_ID não configurados — atualize INSTAGRAM_ACCESS_TOKEN manualmente no painel da hospedagem.',
@@ -109,6 +114,61 @@ async function persistOnVercel(newToken) {
     return true;
   } catch (e) {
     console.error('[refresh-token] erro de rede ao gravar env na Vercel.');
+    return false;
+  }
+}
+
+/**
+ * Redeploya a última produção para que as funções passem a usar o token novo.
+ * Retorna true se o redeploy foi criado com sucesso.
+ */
+async function redeployProduction() {
+  const apiToken = process.env.VERCEL_TOKEN;
+  const projectId = process.env.VERCEL_PROJECT_ID;
+  if (!apiToken || !projectId) return false;
+
+  const teamParam = process.env.VERCEL_TEAM_ID
+    ? `&teamId=${encodeURIComponent(process.env.VERCEL_TEAM_ID)}`
+    : '';
+  const headers = {
+    Authorization: `Bearer ${apiToken}`,
+    'Content-Type': 'application/json',
+  };
+
+  try {
+    // Localiza o deployment de produção mais recente
+    const listRes = await fetch(
+      `https://api.vercel.com/v6/deployments?projectId=${encodeURIComponent(projectId)}&target=production&state=READY&limit=1${teamParam}`,
+      { headers }
+    );
+    const list = await listRes.json();
+    const latest = list.deployments && list.deployments[0];
+    if (!latest) {
+      console.error('[refresh-token] nenhum deployment de produção encontrado para redeploy.');
+      return false;
+    }
+
+    // Cria um novo deployment a partir do atual (equivalente ao "Redeploy")
+    const createRes = await fetch(
+      `https://api.vercel.com/v13/deployments?forceNew=1${teamParam}`,
+      {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          name: latest.name,
+          deploymentId: latest.uid,
+          target: 'production',
+          meta: { trigger: 'instagram-token-refresh' },
+        }),
+      }
+    );
+    if (!createRes.ok) {
+      console.error(`[refresh-token] falha ao redeployar produção (HTTP ${createRes.status}).`);
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error('[refresh-token] erro de rede ao redeployar produção.');
     return false;
   }
 }
