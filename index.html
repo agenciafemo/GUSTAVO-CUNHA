@@ -749,8 +749,39 @@
       border-radius: 20px;
       box-shadow: 0 16px 45px rgba(28, 43, 43, 0.1);
     }
-    .pediatric-review + .pediatric-review {
-      margin-top: 28px;
+    /* Carrossel de avaliações: slides empilhados na mesma célula, alternando por opacidade */
+    .review-carousel {
+      display: grid;
+    }
+    .review-carousel .pediatric-review {
+      grid-area: 1 / 1;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    .review-carousel .pediatric-review.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .review-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .review-carousel-dots button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      background: rgba(89, 145, 146, 0.3);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .review-carousel-dots button.active {
+      background: var(--primary);
+      transform: scale(1.25);
     }
     .pediatric-review::after {
       content: '“';
@@ -4033,7 +4064,8 @@
           </div>
         </div>
 
-        <article class="pediatric-review" aria-label="Avaliação de Mariana Motta Jardim sobre o atendimento infantil">
+        <div class="review-carousel" id="review-carousel" aria-roledescription="carrossel" aria-label="Avaliações de pacientes">
+        <article class="pediatric-review active" aria-label="Avaliação de Mariana Motta Jardim sobre o atendimento infantil">
           <div class="pediatric-review-author">
             <div class="pediatric-review-person">
               <div class="pediatric-review-avatar" aria-hidden="true">M</div>
@@ -4080,6 +4112,47 @@
             <p>Indico de olhos fechados, tanto para crianças quanto para adultos!</p>
           </blockquote>
         </article>
+        </div>
+
+        <div class="review-carousel-dots" role="tablist" aria-label="Escolher avaliação">
+          <button type="button" class="active" aria-label="Avaliação de Mariana Motta Jardim"></button>
+          <button type="button" aria-label="Avaliação de Clara Ebenriter"></button>
+        </div>
+
+        <script>
+          // Carrossel dos depoimentos: alterna automaticamente e permite
+          // escolher pelo indicador. Pausa a rotação ao passar o mouse.
+          (function () {
+            var root = document.getElementById('review-carousel');
+            if (!root) return;
+            var slides = root.querySelectorAll('.pediatric-review');
+            var dots = document.querySelectorAll('.review-carousel-dots button');
+            if (slides.length < 2) return;
+
+            var index = 0;
+            var timer = null;
+
+            function show(i) {
+              index = (i + slides.length) % slides.length;
+              slides.forEach(function (s, n) { s.classList.toggle('active', n === index); });
+              dots.forEach(function (d, n) { d.classList.toggle('active', n === index); });
+            }
+            function start() {
+              stop();
+              timer = setInterval(function () { show(index + 1); }, 8000);
+            }
+            function stop() {
+              if (timer) { clearInterval(timer); timer = null; }
+            }
+
+            dots.forEach(function (d, n) {
+              d.addEventListener('click', function () { show(n); start(); });
+            });
+            root.addEventListener('mouseenter', stop);
+            root.addEventListener('mouseleave', start);
+            start();
+          })();
+        </script>
       </div>
 
       <!-- WAVE DIVISOR -->
