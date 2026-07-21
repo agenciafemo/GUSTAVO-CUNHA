@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,follow" />
+  <title>Política de Cookies | Dr. Gustavo Cunha</title>
+  <link rel="icon" type="image/png" href="/GFAVICON.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/legal.css" />
+  <style>
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 14px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(28,43,43,0.08); vertical-align: top; }
+    th { color: var(--dark); }
+    td { color: var(--text-soft); }
+    .cookie-reset-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 18px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .cookie-reset-btn:hover { background: var(--primary-dk); }
+  </style>
+</head>
+<body>
+  <header class="legal-header">
+    <a href="/">← Voltar ao site</a>
+  </header>
+
+  <main class="legal-main">
+    <h1>Política de Cookies</h1>
+    <p class="legal-updated">Última atualização: julho de 2026</p>
+
+    <p>Cookies são pequenos arquivos armazenados pelo seu navegador que ajudam sites e serviços a funcionar corretamente. Esta página explica quais cookies o site do Dr. Gustavo Cunha utiliza e para quê.</p>
+
+    <h2>1. Cookies essenciais</h2>
+    <p>Usamos um único registro local no seu navegador para lembrar a sua escolha sobre este banner de cookies (aceitar ou recusar). Ele não coleta nenhum dado pessoal e é necessário para não repetir o banner a cada visita.</p>
+
+    <h2>2. Cookies de terceiros (não essenciais)</h2>
+    <p>Alguns recursos do site são fornecidos por serviços externos, que podem definir seus próprios cookies quando carregados. Eles só são ativados após sua autorização no banner de cookies:</p>
+
+    <table>
+      <tr><th>Serviço</th><th>Finalidade</th><th>Fornecedor</th></tr>
+      <tr>
+        <td>Google Maps</td>
+        <td>Exibir o mapa com a localização do consultório</td>
+        <td>Google LLC</td>
+      </tr>
+      <tr>
+        <td>Elfsight</td>
+        <td>Exibir avaliações públicas de pacientes no Google</td>
+        <td>Elfsight Inc.</td>
+      </tr>
+    </table>
+
+    <p>O feed de publicações do Instagram exibido no site <strong>não</strong> depende de cookies de terceiros: as publicações são buscadas por um servidor próprio e apenas exibidas na página.</p>
+
+    <h2>3. Como gerenciar sua escolha</h2>
+    <p>Você pode aceitar ou recusar os cookies não essenciais no banner exibido na primeira visita. Para revisar essa escolha a qualquer momento, use o botão abaixo — o banner voltará a aparecer.</p>
+    <button class="cookie-reset-btn" onclick="localStorage.removeItem('cookie-consent'); location.reload();">Revisar minha escolha de cookies</button>
+
+    <h2>4. Alterações desta política</h2>
+    <p>Esta política pode ser atualizada periodicamente. A versão vigente é sempre a publicada nesta página.</p>
+  </main>
+
+  <div class="legal-footer">© <span id="year"></span> Dr. Gustavo Soares Cunha · CRO/SC 16218</div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
