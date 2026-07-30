@@ -3678,6 +3678,10 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript): só afeta visitantes sem JavaScript,
+       por isso segue sempre presente, sem depender do consentimento. -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSZRPRP4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ============================================================
        HEADER FIXO GLOBAL
@@ -5053,10 +5057,12 @@
     (function () {
       var STORAGE_KEY = 'cookie-consent';
       var GOOGLE_ADS_ID = 'AW-18360936071';
+      var GTM_ID = 'GTM-WSZRPRP4';
       var banner = document.getElementById('cookie-banner');
       var mapBox = document.getElementById('location-map');
       var reviewsBox = document.getElementById('reviews-embed');
       var gtagLoaded = false;
+      var gtmLoaded = false;
 
       function loadGoogleTags() {
         if (gtagLoaded) return;
@@ -5070,6 +5076,18 @@
         window.gtag = function () { dataLayer.push(arguments); };
         gtag('js', new Date());
         gtag('config', GOOGLE_ADS_ID);
+      }
+
+      function loadGTM() {
+        if (gtmLoaded) return;
+        gtmLoaded = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = document.getElementsByTagName('script')[0];
+        var j = document.createElement('script');
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+        f.parentNode.insertBefore(j, f);
       }
 
       function loadMaps() {
@@ -5110,6 +5128,7 @@
           loadMaps();
           loadReviews();
           loadGoogleTags();
+          loadGTM();
         } else {
           showPlaceholder(mapBox, 'Aceite os cookies para ver o mapa.');
           showPlaceholder(reviewsBox, 'Aceite os cookies para ver as avaliações.');
