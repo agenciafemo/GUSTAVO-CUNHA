@@ -5047,13 +5047,30 @@
   </script>
 
   <script>
-    /* Banner de cookies: Google Maps e avaliações do Google (Elfsight) só
-       carregam depois que o visitante decide, via localStorage. */
+    /* Banner de cookies: Google Maps, avaliações do Google (Elfsight) e as
+       tags de medição (Google Ads etc.) só carregam depois que o visitante
+       decide, via localStorage. */
     (function () {
       var STORAGE_KEY = 'cookie-consent';
+      var GOOGLE_ADS_ID = 'AW-18360936071';
       var banner = document.getElementById('cookie-banner');
       var mapBox = document.getElementById('location-map');
       var reviewsBox = document.getElementById('reviews-embed');
+      var gtagLoaded = false;
+
+      function loadGoogleTags() {
+        if (gtagLoaded) return;
+        gtagLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GOOGLE_ADS_ID;
+        document.head.appendChild(s);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', GOOGLE_ADS_ID);
+      }
 
       function loadMaps() {
         if (!mapBox || mapBox.querySelector('iframe')) return;
@@ -5092,6 +5109,7 @@
         if (value === 'accepted') {
           loadMaps();
           loadReviews();
+          loadGoogleTags();
         } else {
           showPlaceholder(mapBox, 'Aceite os cookies para ver o mapa.');
           showPlaceholder(reviewsBox, 'Aceite os cookies para ver as avaliações.');
