@@ -5061,6 +5061,7 @@
     (function () {
       var STORAGE_KEY = 'cookie-consent';
       var GOOGLE_ADS_ID = 'AW-18360936071';
+      var GA4_ID = 'G-B969YSVCHT';
       var GTM_ID = 'GTM-WSZRPRP4';
       var banner = document.getElementById('cookie-banner');
       var mapBox = document.getElementById('location-map');
@@ -5080,6 +5081,7 @@
         window.gtag = function () { dataLayer.push(arguments); };
         gtag('js', new Date());
         gtag('config', GOOGLE_ADS_ID);
+        gtag('config', GA4_ID);
       }
 
       function loadGTM() {
